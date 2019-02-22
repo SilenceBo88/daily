@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--使用AppBarLayout布局解决遮挡Toobar的问题-->
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+        <!--新的标题栏-->
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/index_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin">
+
+            <Button
+                    android:id="@+id/index_btn_menu"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/ic_menu"/>
+
+        </android.support.v7.widget.Toolbar>
+
+        <!--净资产布局-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_all_assets"
+                        android:textColor="@color/color_white"
+                        android:textSize="22sp"/>
+
+                <TextView
+                        android:id="@+id/tv_all_assets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="0"
+                        android:textColor="@color/color_white"
+                        android:textSize="34sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--月收入支出布局-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="35dp"
+                android:orientation="horizontal">
+
+            <!--月收入-->
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_month_income"
+                        android:textColor="@color/color_white"/>
+
+                <TextView
+                        android:id="@+id/tv_month_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="0"
+                        android:textColor="@color/color_white"
+                        android:textSize="22sp"/>
+            </LinearLayout>
+
+            <!--分割线-->
+            <View
+                    android:layout_width="1px"
+                    android:layout_height="24dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/white"/>
+
+            <!--月支出-->
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_month_outlay"
+                        android:textColor="@color/color_white"/>
+
+                <TextView
+                        android:id="@+id/tv_month_outlay"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="0"
+                        android:textColor="@color/color_white"
+                        android:textSize="22sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--标题栏下方的内容区域-->
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <!--卡片布局，有圆角-->
+            <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="35dp"
+                    app:cardCornerRadius="4dp">
+
+                <TextView
+                        android:id="@+id/fruit_content_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:text="工资薪水：10000"/>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <!--悬浮按钮-->
+    <android.support.design.widget.FloatingActionButton
+            android:id="@+id/index_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="48dp"
+            android:layout_marginRight="16dp"
+            android:src="@drawable/ic_add"/>
+
+</android.support.design.widget.CoordinatorLayout>

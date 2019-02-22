@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group1" android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_main"
+                android:icon="@drawable/nav_main"
+                android:title="@string/text_nav_main" />
+        <item
+                android:id="@+id/nav_chart"
+                android:icon="@drawable/nav_chart"
+                android:title="@string/text_nav_chart" />
+        <item
+                android:id="@+id/nav_assets"
+                android:icon="@drawable/nav_assets"
+                android:title="@string/text_nav_assets" />
+        <item
+                android:id="@+id/nav_sort"
+                android:icon="@drawable/nav_sort"
+                android:title="@string/text_nav_sort" />
+        <item
+                android:id="@+id/nav_self"
+                android:icon="@drawable/nav_self"
+                android:title="@string/text_nav_self" />
+    </group>
+
+    <group android:id="@+id/group2" android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_site"
+                android:icon="@drawable/nav_site"
+                android:title="@string/text_nav_site" />
+        <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/nav_about"
+                android:title="@string/text_nav_about" />
+    </group>
+</menu>
