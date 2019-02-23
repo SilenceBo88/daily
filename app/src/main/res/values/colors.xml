@@ -6,4 +6,6 @@
 
     <!--统一定义颜色-->
     <color name="color_white">#FFFFFF</color>
+    <color name="color_gray">#837f7f</color>
+    <color name="color_black">#000000</color>
 </resources>

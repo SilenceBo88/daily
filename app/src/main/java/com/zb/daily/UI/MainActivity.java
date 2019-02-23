@@ -1,24 +1,24 @@
-package com.zb.daily;
+package com.zb.daily.UI;
 
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
-import com.zb.daily.UI.AssetsFragment;
-import com.zb.daily.UI.ChartFragment;
-import com.zb.daily.UI.IndexFragment;
+import com.zb.daily.R;
+import com.zb.daily.UI.fragment.AssetsFragment;
+import com.zb.daily.UI.fragment.ChartFragment;
+import com.zb.daily.UI.fragment.IndexFragment;
 
+/**
+ * @auther: zb
+ * @Date: 2019/2/20 14:09
+ * @Description: 主活动
+ */
 public class MainActivity extends AppCompatActivity {
 
     //滑动菜单

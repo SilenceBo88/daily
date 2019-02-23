@@ -1,27 +1,32 @@
-package com.zb.daily.UI;
+package com.zb.daily.UI.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.Toast;
-import com.zb.daily.MainActivity;
+import com.zb.daily.MyApplication;
 import com.zb.daily.R;
+import com.zb.daily.adapter.AssetsAdapter;
+import com.zb.daily.model.Assets;
+
+import java.util.List;
 
 /**
  * @auther: zb
  * @Date: 2019/2/22 18:01
- * @Description:
+ * @Description: 主页面
  */
 public class IndexFragment extends Fragment {
 
@@ -44,6 +49,8 @@ public class IndexFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         //用Toolbar替换ActionBar
         setHasOptionsMenu(true);
         AppCompatActivity appCompatActivity= (AppCompatActivity) getActivity();
@@ -69,7 +76,5 @@ public class IndexFragment extends Fragment {
                 Toast.makeText(getContext(), "FABIndex clicked", Toast.LENGTH_SHORT).show();
             }
         });
-
-        super.onActivityCreated(savedInstanceState);
     }
 }

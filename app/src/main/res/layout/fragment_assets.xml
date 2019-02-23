@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--资产主页面-->
 <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,6 +17,7 @@
                 android:id="@+id/assets_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/color_white"
                 app:layout_collapseMode="pin">
 
             <Button
@@ -24,45 +26,17 @@
                     android:layout_height="40dp"
                     android:background="@drawable/ic_menu"/>
 
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_white"
+                    android:textSize="20sp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="资产管理"/>
+
         </android.support.v7.widget.Toolbar>
 
-        <!--净资产布局-->
-        <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-            <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="资产页面"
-                        android:textColor="@color/color_white"
-                        android:textSize="22sp"/>
-
-                <TextView
-                        android:id="@+id/tv_all_assets"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:ellipsize="end"
-                        android:maxLines="2"
-                        android:text="0"
-                        android:textColor="@color/color_white"
-                        android:textSize="34sp"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!--月收入支出布局-->
+        <!--资产负债布局-->
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,7 +44,7 @@
                 android:layout_marginTop="35dp"
                 android:orientation="horizontal">
 
-            <!--月收入-->
+            <!--总资产-->
             <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -81,7 +55,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_month_income"
+                        android:text="总资产(¥)"
                         android:textColor="@color/color_white"/>
 
                 <TextView
@@ -106,7 +80,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@android:color/white"/>
 
-            <!--月支出-->
+            <!--总负债+-->
             <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -117,7 +91,7 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/text_month_outlay"
+                        android:text="总负债(¥)"
                         android:textColor="@color/color_white"/>
 
                 <TextView
@@ -146,24 +120,36 @@
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <!--卡片布局，有圆角-->
-            <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="15dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
-                    android:layout_marginTop="35dp"
-                    app:cardCornerRadius="4dp">
+                android:layout_height="match_parent">
 
-                <TextView
-                        android:id="@+id/fruit_content_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:text="工资薪水：10000"/>
-            </android.support.v7.widget.CardView>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="20sp"
+                    android:text="资产账户"
+                    android:textColor="@color/color_gray"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/assets_assets_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:textSize="20sp"
+                android:text="负债账户"
+                android:textColor="@color/color_gray"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/assets_liability_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 

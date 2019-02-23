@@ -1,4 +1,4 @@
-package com.zb.daily.UI;
+package com.zb.daily.UI.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -20,7 +20,7 @@ import com.zb.daily.R;
 /**
  * @auther: zb
  * @Date: 2019/2/22 18:01
- * @Description:
+ * @Description: 图表页面
  */
 public class ChartFragment extends Fragment {
 
@@ -43,6 +43,8 @@ public class ChartFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
         //用Toolbar替换ActionBar
         setHasOptionsMenu(true);
         AppCompatActivity appCompatActivity= (AppCompatActivity) getActivity();
@@ -68,7 +70,5 @@ public class ChartFragment extends Fragment {
                 Toast.makeText(getContext(), "FABChart clicked", Toast.LENGTH_SHORT).show();
             }
         });
-
-        super.onActivityCreated(savedInstanceState);
     }
 }
