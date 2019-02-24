@@ -40,6 +40,8 @@ public class AssetsFragment extends Fragment {
     private DrawerLayout drawerLayout;
     //菜单按钮
     private Button menuButton;
+    //添加按钮
+    private Button addButton;
     //资产账户集合
     private List<Assets> assetsList = new ArrayList<>();
     //负债账户集合
@@ -75,12 +77,21 @@ public class AssetsFragment extends Fragment {
             }
         });
 
+        //添加按钮点击事件
+        addButton = activity.findViewById(R.id.assets_btn_add);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "添加资产账户", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         //悬浮按钮点击事件
         fab = activity.findViewById(R.id.assets_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "FABAssets clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "转账", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -104,29 +115,64 @@ public class AssetsFragment extends Fragment {
 
     //初始化资产和负债列表
     private void init() {
+        Assets assets3 = new Assets();
+        assets3.setName("现金");
+        assets3.setImageId(R.drawable.assets_cash);
+        assets3.setBalance(200.00);
+        assetsList.add(assets3);
+
         Assets assets1 = new Assets();
         assets1.setName("支付宝");
+        assets1.setImageId(R.drawable.assets_alipay);
         assets1.setBalance(500.00);
         assetsList.add(assets1);
 
         Assets assets2 = new Assets();
         assets2.setName("微信");
+        assets2.setImageId(R.drawable.assets_wechat);
         assets2.setBalance(1000.00);
         assetsList.add(assets2);
 
-        Assets assets3 = new Assets();
-        assets3.setName("现金");
-        assets3.setBalance(200.00);
-        assetsList.add(assets3);
+        Assets assets4 = new Assets();
+        assets4.setName("储蓄卡");
+        assets4.setImageId(R.drawable.assets_save);
+        assets4.setBalance(10000.00);
+        assetsList.add(assets4);
 
-        Assets liability1 = new Assets();
-        liability1.setName("欠款");
-        liability1.setBalance(1200.00);
-        liabilityList.add(liability1);
+        Assets assets5 = new Assets();
+        assets5.setName("充值卡");
+        assets5.setImageId(R.drawable.assets_recharge);
+        assets5.setBalance(100.00);
+        assetsList.add(assets5);
+
+        Assets assets6 = new Assets();
+        assets6.setName("应收账");
+        assets6.setImageId(R.drawable.assets_receipt);
+        assets6.setBalance(200.00);
+        assetsList.add(assets6);
 
         Assets liability2 = new Assets();
         liability2.setName("信用卡");
+        liability2.setImageId(R.drawable.assets_credit);
         liability2.setBalance(200.00);
         liabilityList.add(liability2);
+
+        Assets liability3 = new Assets();
+        liability3.setName("花呗");
+        liability3.setImageId(R.drawable.assets_flower);
+        liability3.setBalance(300.00);
+        liabilityList.add(liability3);
+
+        Assets liability4 = new Assets();
+        liability4.setName("京东白条");
+        liability4.setImageId(R.drawable.assets_jd);
+        liability4.setBalance(200.00);
+        liabilityList.add(liability4);
+
+        Assets liability1 = new Assets();
+        liability1.setName("应付账");
+        liability1.setImageId(R.drawable.assets_pay);
+        liability1.setBalance(1200.00);
+        liabilityList.add(liability1);
     }
 }

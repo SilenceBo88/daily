@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/colorPrimary">
+
+    <Button
+            android:id="@+id/assets_btn_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/ic_menu"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_white"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            android:text="资产管理"/>
+
+    <Button
+            android:id="@+id/assets_btn_add"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight ="10dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_add"/>
+
+</RelativeLayout>

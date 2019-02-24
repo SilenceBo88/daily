@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.bumptech.glide.Glide;
 import com.zb.daily.R;
 import com.zb.daily.model.Assets;
 
@@ -68,8 +69,8 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, int position) {
         Assets assets = mAssetsList.get(position);
         holder.assetsName.setText(assets.getName());
-        holder.assetsImage.setImageResource(R.drawable.nav_assets);
         holder.assetsBalance.setText(assets.getBalance().toString());
+        Glide.with(mContext).load(assets.getImageId()).into(holder.assetsImage);
     }
 
     @Override
