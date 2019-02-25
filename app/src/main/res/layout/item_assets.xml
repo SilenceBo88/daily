@@ -19,7 +19,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/nav_assets"/>
+                android:src="@drawable/assets_cash"/>
 
         <TextView
                 android:id="@+id/assets_name"

@@ -1,7 +1,10 @@
 package com.zb.daily;
 
+
 import android.app.Application;
 import android.content.Context;
+import org.litepal.LitePal;
+import org.litepal.LitePalApplication;
 
 /**
  * @auther: zb
@@ -16,6 +19,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
+        //加载数据库第三方库
+        LitePal.initialize(context);
     }
 
     public static Context getContext(){

@@ -13,6 +13,7 @@ import com.zb.daily.R;
 import com.zb.daily.UI.fragment.AssetsFragment;
 import com.zb.daily.UI.fragment.ChartFragment;
 import com.zb.daily.UI.fragment.IndexFragment;
+import org.litepal.tablemanager.Connector;
 
 /**
  * @auther: zb
@@ -31,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+        //创建数据库
+        Connector.getDatabase();
 
+        drawerLayout = findViewById(R.id.drawer_layout);
         //替换fragment
         replaceFragment(new IndexFragment());
 
