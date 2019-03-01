@@ -1,5 +1,6 @@
 package com.zb.daily.UI.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
+import com.zb.daily.UI.AddAssetsActivity;
 import com.zb.daily.adapter.AssetsAdapter;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.dao.DBInit;
@@ -48,7 +50,7 @@ public class AssetsFragment extends Fragment {
     private List<Assets> assetsList = new ArrayList<>();
     //负债账户集合
     private List<Assets> liabilityList = new ArrayList<>();
-    //
+    //资产数据库查询
     private AssetsDao assetsDao = new AssetsDao();
 
     @Nullable
@@ -86,7 +88,9 @@ public class AssetsFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "添加资产账户", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(activity, AddAssetsActivity.class);
+                startActivityForResult(intent,1);
             }
         });
 

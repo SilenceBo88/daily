@@ -48,32 +48,6 @@
                         android:background="@drawable/ic_add"/>
 
             </RelativeLayout>
-            <!--<Button
-                    android:id="@+id/assets_btn_menu"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/ic_menu"/>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/color_white"
-                    android:textSize="20sp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="资产管理"/>
-
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right">
-
-                    <Button
-                            android:id="@+id/assets_btn_add"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:background="@drawable/ic_add"/>
-
-            </LinearLayout>-->
 
         </android.support.v7.widget.Toolbar>
 

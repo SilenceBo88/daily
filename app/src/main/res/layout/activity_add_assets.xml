@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--添加资产页面-->
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--使用AppBarLayout布局解决遮挡Toobar的问题-->
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary">
+
+        <!--新的标题栏-->
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/assets_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/color_white"
+                app:layout_collapseMode="pin">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <Button
+                        android:id="@+id/assets_add_btn_pre"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/ic_pre"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_white"
+                        android:textSize="18sp"
+                        android:layout_centerHorizontal="true"
+                        android:text="添加资产"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:textSize="20sp"
+                        android:text="资产账户"
+                        android:textColor="@color/color_gray"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/assets_add_assets_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:textSize="20sp"
+                        android:text="负债账户"
+                        android:textColor="@color/color_gray"/>
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/assets_add_liability_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -9,7 +9,7 @@
     <string name="text_nav_self">个人中心</string>
     <string name="text_nav_site">设置</string>
     <string name="text_nav_about">关于</string>
-    
+
     <!--标题栏文字定义-->
     <string name="text_all_assets">净资产(¥)</string>
     <string name="text_month_income">本月收入(¥)</string>
