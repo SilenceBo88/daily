@@ -99,8 +99,7 @@ public class AssetsFragment extends Fragment {
             }
         });
 
-        //初始化资产和负债列表
-        DBInit.assetsInit();
+        //查询资产和负债列表
         assetsList = assetsDao.findAssetsListByType(1);
         liabilityList = assetsDao.findAssetsListByType(2);
 

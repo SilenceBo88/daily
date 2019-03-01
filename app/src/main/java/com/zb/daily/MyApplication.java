@@ -3,6 +3,8 @@ package com.zb.daily;
 
 import android.app.Application;
 import android.content.Context;
+import com.zb.daily.dao.DBInit;
+import com.zb.daily.util.SPUtil;
 import org.litepal.LitePal;
 import org.litepal.LitePalApplication;
 
@@ -15,12 +17,25 @@ public class MyApplication extends Application {
 
     private static Context context;
 
+    //sqlite数据是否初始化
+    private static final String DATA_INIT_TEXT = "DATA_INIT";
+    private static boolean data_init;
+
     @Override
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
         //加载数据库第三方库
         LitePal.initialize(context);
+
+        data_init = (boolean)SPUtil.get(context, DATA_INIT_TEXT, false);
+        if (!data_init){
+            //初始化资产和负债列表
+            DBInit.assetsInit();
+
+            //设置数据已经初始化
+            SPUtil.put(context, DATA_INIT_TEXT, true);
+        }
     }
 
     public static Context getContext(){
