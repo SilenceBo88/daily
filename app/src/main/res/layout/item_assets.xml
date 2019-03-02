@@ -21,15 +21,32 @@
                 android:layout_margin="10dp"
                 android:src="@drawable/assets_cash"/>
 
-        <TextView
-                android:id="@+id/assets_name"
+        <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_gravity="center_vertical"
-                android:textSize="16sp"
-                android:textColor="@color/color_black"
-                android:text="工资薪水"/>
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical">
+
+            <TextView
+                    android:id="@+id/assets_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="16sp"
+                    android:textColor="@color/color_black"
+                    android:text="工资薪水"/>
+
+            <TextView
+                    android:id="@+id/assets_remark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:textColor="@color/color_shallow_gray"
+                    android:text="我的工资"/>
+        </LinearLayout>
 
         <LinearLayout
                 android:layout_width="match_parent"

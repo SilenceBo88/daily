@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +22,10 @@ import android.widget.Toast;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.AddAssetsActivity;
+import com.zb.daily.UI.helper.MyItemTouchCallback;
+import com.zb.daily.UI.helper.StartDragListener;
 import com.zb.daily.adapter.AssetsAdapter;
 import com.zb.daily.dao.AssetsDao;
-import com.zb.daily.dao.DBInit;
 import com.zb.daily.model.Assets;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ import java.util.List;
  * @Date: 2019/2/22 18:01
  * @Description: 资产列表页面
  */
-public class AssetsFragment extends Fragment {
+public class AssetsFragment extends Fragment implements StartDragListener {
 
     public FragmentActivity activity;
 
@@ -52,6 +54,10 @@ public class AssetsFragment extends Fragment {
     private List<Assets> liabilityList = new ArrayList<>();
     //资产数据库查询
     private AssetsDao assetsDao = new AssetsDao();
+    //触摸事件帮助类
+    private ItemTouchHelper itemtouchhelper;
+    //触摸事件帮助类
+    private ItemTouchHelper itemtouchhelper2;
 
     @Nullable
     @Override
@@ -111,14 +117,31 @@ public class AssetsFragment extends Fragment {
         RecyclerView assetsRecyclerView = activity.findViewById(R.id.assets_assets_recyclerView);
         LinearLayoutManager assetsLayoutManager = new LinearLayoutManager(MyApplication.getContext());
         assetsRecyclerView.setLayoutManager(assetsLayoutManager);
-        AssetsAdapter assetsAdapter = new AssetsAdapter(assetsList);
+        AssetsAdapter assetsAdapter = new AssetsAdapter(assetsList, this);
         assetsRecyclerView.setAdapter(assetsAdapter);
 
         //负债账户的滑动控件
         RecyclerView liabilityRecyclerView = activity.findViewById(R.id.assets_liability_recyclerView);
         LinearLayoutManager liabilityLayoutManager = new LinearLayoutManager(MyApplication.getContext());
         liabilityRecyclerView.setLayoutManager(liabilityLayoutManager);
-        AssetsAdapter liabilityAdapter = new AssetsAdapter(liabilityList);
+        AssetsAdapter liabilityAdapter = new AssetsAdapter(liabilityList, this);
         liabilityRecyclerView.setAdapter(liabilityAdapter);
+
+        //assetsRecyclerView 注册item滑动事件
+        ItemTouchHelper.Callback callback = new MyItemTouchCallback(assetsAdapter);
+        itemtouchhelper = new ItemTouchHelper(callback);
+        itemtouchhelper.attachToRecyclerView(assetsRecyclerView);
+
+        //liabilityRecyclerView 注册item滑动事件
+        ItemTouchHelper.Callback callback2 = new MyItemTouchCallback(liabilityAdapter);
+        itemtouchhelper2 = new ItemTouchHelper(callback2);
+        itemtouchhelper2.attachToRecyclerView(liabilityRecyclerView);
+    }
+
+    //执行点击图标进行拖动的效果
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        itemtouchhelper.startDrag(viewHolder);
+        itemtouchhelper2.startDrag(viewHolder);
     }
 }
