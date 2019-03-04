@@ -1,6 +1,8 @@
 package com.zb.daily.adapter;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.zb.daily.R;
 import com.zb.daily.UI.helper.ItemTouchHelperAdapterCallback;
 import com.zb.daily.UI.helper.StartDragListener;
+import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
 
 import java.util.Collections;
@@ -29,6 +32,7 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
     private Context mContext;
     private List<Assets> mAssetsList;
     private StartDragListener startDragListener;
+    private AssetsDao assetsDao = new AssetsDao();
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
@@ -74,9 +78,15 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
         holder.cardView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                //这里面当点击图片的时候 开始执行拖动。因为itemtouchhelper的startDrag方法需要一个viewholder。所以通过回调的方法吧holder传出去
-                if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                    startDragListener.onStartDrag(holder);
+                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                    //长按事件
+                    holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                        @Override
+                        public boolean onLongClick(View v) {
+                            startDragListener.onStartDrag(holder);
+                            return true;
+                        }
+                    });
                 }
                 return false;
             }
@@ -111,6 +121,6 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
         Collections.swap(mAssetsList, fromPosition, toPosition);
         //刷新数据
         notifyItemMoved(fromPosition, toPosition);
-        return false;
+        return true;
     }
 }
