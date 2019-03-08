@@ -78,7 +78,7 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
         holder.cardView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(event.getAction() == MotionEvent.ACTION_DOWN){
+                if(event.getAction() == MotionEvent.ACTION_UP){
                     //长按事件
                     holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
                         @Override
@@ -114,9 +114,10 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
         return mAssetsList.size();
     }
 
-    //两个接口回调的方法.来执行 移动和 删除之后的操作
+    //接口回调的方法,来执行移动之后的操作
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
+        assetsDao.swapAssetsList(mAssetsList.get(fromPosition), mAssetsList.get(toPosition));
         //数据发生改变  两个数据交换位置
         Collections.swap(mAssetsList, fromPosition, toPosition);
         //刷新数据
