@@ -12,4 +12,8 @@ public class Constant {
 
     //添加资产列表
     public static final String ASSETS_ADD_TEXT = "ASSETS_ADD";
+
+    public static final int TO_INDEX_FRAGMENT = 1;
+    public static final int TO_CHART_FRAGMENT = 2;
+    public static final int TO_ASSETS_FRAGMENT = 3;
 }

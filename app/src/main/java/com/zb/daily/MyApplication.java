@@ -3,6 +3,7 @@ package com.zb.daily;
 
 import android.app.Application;
 import android.content.Context;
+import com.hjq.toast.ToastUtils;
 import com.zb.daily.dao.DBInit;
 import com.zb.daily.util.SPUtil;
 import org.litepal.LitePal;
@@ -25,12 +26,13 @@ public class MyApplication extends Application {
         context = getApplicationContext();
         //加载数据库第三方库
         LitePal.initialize(context);
+        //初始化Toast工具类
+        ToastUtils.init(this);
 
         data_init = (boolean)SPUtil.get(context, Constant.DATA_INIT_TEXT, false);
         if (!data_init){
             //初始化资产和负债列表
             DBInit.assetsInit();
-
             //设置数据已经初始化
             SPUtil.put(context, Constant.DATA_INIT_TEXT, true);
         }

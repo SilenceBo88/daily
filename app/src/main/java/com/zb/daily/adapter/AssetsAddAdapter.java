@@ -10,11 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.zb.daily.R;
-import com.zb.daily.UI.AddAssetsActivity;
-import com.zb.daily.UI.AddAssetsDatilActivity;
+import com.zb.daily.UI.AddAssetsDetailActivity;
 import com.zb.daily.model.Assets;
 
 import java.util.List;
@@ -62,8 +61,8 @@ public class AssetsAddAdapter extends RecyclerView.Adapter<AssetsAddAdapter.View
             Assets assets = mAssetsList.get(position);
 
             Intent intent = new Intent();
-            intent.setClass(mContext, AddAssetsDatilActivity.class);
-            intent.putExtra("id", assets.getId());
+            intent.setClass(mContext, AddAssetsDetailActivity.class);
+            intent.putExtra("assets", JSONObject.toJSONString(assets));
             ((AppCompatActivity)mContext).startActivityForResult(intent,1);
             }
         });

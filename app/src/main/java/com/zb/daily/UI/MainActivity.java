@@ -9,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import com.zb.daily.Constant;
 import com.zb.daily.R;
 import com.zb.daily.UI.fragment.AssetsFragment;
 import com.zb.daily.UI.fragment.ChartFragment;
@@ -31,17 +32,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         //创建数据库
         Connector.getDatabase();
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+
         //替换fragment
-        replaceFragment(new IndexFragment());
+        int to = getIntent().getIntExtra("to",Constant.TO_INDEX_FRAGMENT);
+        switch (to){
+            case Constant.TO_INDEX_FRAGMENT:
+                navigationView.setCheckedItem(R.id.nav_main);
+                replaceFragment(new IndexFragment());
+                break;
+            case Constant.TO_CHART_FRAGMENT:
+                navigationView.setCheckedItem(R.id.nav_chart);
+                replaceFragment(new ChartFragment());
+                break;
+            case Constant.TO_ASSETS_FRAGMENT:
+                navigationView.setCheckedItem(R.id.nav_assets);
+                replaceFragment(new AssetsFragment());
+                break;
+        }
 
         //处理点击菜单项产生的事件
-        navigationView = findViewById(R.id.nav_view);
-        navigationView.setCheckedItem(R.id.nav_main);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

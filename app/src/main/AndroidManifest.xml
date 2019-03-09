@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".UI.AddAssetsActivity">
         </activity>
-        <activity android:name=".UI.AddAssetsDatilActivity">
+        <activity android:name=".UI.AddAssetsDetailActivity">
         </activity>
     </application>
 

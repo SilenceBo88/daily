@@ -40,9 +40,14 @@ public class AssetsDao {
         }
     }
 
-    //按照资产类型查询资产集合
+    //按照资产类型查询资产
     public Assets findAssetsById(Integer id){
         Assets assets = DataSupport.find(Assets.class, id);
         return assets;
+    }
+
+    //保存资产
+    public boolean saveAssets(Assets temp) {
+        return temp.save();
     }
 }

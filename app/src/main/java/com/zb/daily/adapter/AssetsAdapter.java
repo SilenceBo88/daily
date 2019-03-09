@@ -99,7 +99,7 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
         Assets assets = mAssetsList.get(position);
         holder.assetsName.setText(assets.getName());
         holder.assetsBalance.setText(assets.getBalance().toString());
-        if (!(assets.getRemark() == "") && !(assets.getRemark() == null)){
+        if (!assets.getRemark().isEmpty()){
             holder.assetsRemark.setText(assets.getRemark());
         }else {
             holder.assetsRemark.setVisibility(View.GONE);
