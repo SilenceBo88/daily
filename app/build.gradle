@@ -36,5 +36,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     //数据库orm框架
     implementation 'org.litepal.android:core:1.6.1'
+    //Json数据格式
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.56'
 
 }

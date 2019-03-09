@@ -5,6 +5,11 @@ import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import com.zb.daily.R;
+import com.zb.daily.adapter.AssetsAdapter;
+import com.zb.daily.dao.AssetsDao;
+import com.zb.daily.model.Assets;
+
+import java.util.List;
 
 /**
  * @auther: zb
@@ -14,6 +19,8 @@ import com.zb.daily.R;
 public class MyItemTouchCallback extends ItemTouchHelper.Callback {
 
     private final ItemTouchHelperAdapterCallback itemTouchCallback;
+
+    private AssetsDao assetsDao = new AssetsDao();
 
     public MyItemTouchCallback(ItemTouchHelperAdapterCallback itemtouchcallback) {//动画的返回接口
         this.itemTouchCallback = itemtouchcallback;
@@ -70,6 +77,9 @@ public class MyItemTouchCallback extends ItemTouchHelper.Callback {
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         viewHolder.itemView.setBackgroundColor(Color.WHITE);
+        List<Assets> assetsList = ((AssetsAdapter) recyclerView.getAdapter()).getAssetsList();
+        //替换旧的资产列表
+        assetsDao.replaceOldList(assetsList);
         super.clearView(recyclerView, viewHolder);
     }
 

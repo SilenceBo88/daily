@@ -24,22 +24,19 @@ public class AssetsDao {
         return assetsList;
     }
 
-    public void swapAssetsList(Assets assets1, Assets assets2){
-        ContentValues values1 = new ContentValues();
-        values1.put("imageId", assets2.getImageId());
-        values1.put("name", assets2.getName());
-        values1.put("balance", assets2.getBalance());
-        values1.put("type", assets2.getType());
-        values1.put("remark", assets2.getRemark());
+    //替换旧的资产列表
+    public void replaceOldList(List<Assets> assetsList) {
+        List<Assets> tempAssets = findAssetsListByType(assetsList.get(0).getType());
 
-        ContentValues values2 = new ContentValues();
-        values2.put("imageId", assets1.getImageId());
-        values2.put("name", assets1.getName());
-        values2.put("balance", assets1.getBalance());
-        values2.put("type", assets1.getType());
-        values2.put("remark", assets1.getRemark());
+        for (int i=0; i<assetsList.size(); i++){
+           Assets temp = new Assets();
+           temp.setImageId(assetsList.get(i).getImageId());
+           temp.setName(assetsList.get(i).getName());
+           temp.setBalance(assetsList.get(i).getBalance());
+           temp.setType(assetsList.get(i).getType());
+           temp.setRemark(assetsList.get(i).getRemark());
 
-        DataSupport.update(Assets.class, values1, assets1.getId());
-        DataSupport.update(Assets.class, values2, assets2.getId());
+           temp.update(tempAssets.get(i).getId());
+        }
     }
 }

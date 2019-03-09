@@ -17,8 +17,6 @@ public class MyApplication extends Application {
 
     private static Context context;
 
-    //sqlite数据是否初始化
-    private static final String DATA_INIT_TEXT = "DATA_INIT";
     private static boolean data_init;
 
     @Override
@@ -28,13 +26,13 @@ public class MyApplication extends Application {
         //加载数据库第三方库
         LitePal.initialize(context);
 
-        data_init = (boolean)SPUtil.get(context, DATA_INIT_TEXT, false);
+        data_init = (boolean)SPUtil.get(context, Constant.DATA_INIT_TEXT, false);
         if (!data_init){
             //初始化资产和负债列表
             DBInit.assetsInit();
 
             //设置数据已经初始化
-            SPUtil.put(context, DATA_INIT_TEXT, true);
+            SPUtil.put(context, Constant.DATA_INIT_TEXT, true);
         }
     }
 

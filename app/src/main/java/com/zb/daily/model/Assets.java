@@ -79,11 +79,4 @@ public class Assets extends DataSupport {
         this.type = type;
         this.remark = remark;
     }
-
-    public Assets(Integer imageId, String name, Double balance, Integer type) {
-        this.imageId = imageId;
-        this.name = name;
-        this.balance = balance;
-        this.type = type;
-    }
 }
