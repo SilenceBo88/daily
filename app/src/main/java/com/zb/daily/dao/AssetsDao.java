@@ -39,4 +39,10 @@ public class AssetsDao {
            temp.update(tempAssets.get(i).getId());
         }
     }
+
+    //按照资产类型查询资产集合
+    public Assets findAssetsById(Integer id){
+        Assets assets = DataSupport.find(Assets.class, id);
+        return assets;
+    }
 }

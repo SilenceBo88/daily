@@ -1,6 +1,8 @@
 package com.zb.daily.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.zb.daily.R;
+import com.zb.daily.UI.AddAssetsActivity;
+import com.zb.daily.UI.AddAssetsDatilActivity;
 import com.zb.daily.model.Assets;
 
 import java.util.List;
@@ -43,7 +47,7 @@ public class AssetsAddAdapter extends RecyclerView.Adapter<AssetsAddAdapter.View
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         if (mContext == null) {
             mContext = parent.getContext();
         }
@@ -56,7 +60,11 @@ public class AssetsAddAdapter extends RecyclerView.Adapter<AssetsAddAdapter.View
             public void onClick(View v) {
             int position = holder.getAdapterPosition();
             Assets assets = mAssetsList.get(position);
-            Toast.makeText(v.getContext(), "添加" + assets.getName(), Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent();
+            intent.setClass(mContext, AddAssetsDatilActivity.class);
+            intent.putExtra("id", assets.getId());
+            ((AppCompatActivity)mContext).startActivityForResult(intent,1);
             }
         });
         return holder;

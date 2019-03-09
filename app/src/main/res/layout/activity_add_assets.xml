@@ -27,7 +27,7 @@
 
                 <Button
                         android:id="@+id/assets_add_btn_pre"
-                        android:layout_width="20dp"
+                        android:layout_width="25dp"
                         android:layout_height="20dp"
                         android:layout_alignParentLeft="true"
                         android:background="@drawable/ic_pre"/>

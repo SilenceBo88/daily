@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class AddAssetsActivity extends AppCompatActivity {
 
-    //菜单按钮
+    //返回按钮
     private Button addPreButton;
     //资产全部列表
     private List<Assets> assetsAddAllList = new ArrayList<>();
@@ -34,8 +34,6 @@ public class AddAssetsActivity extends AppCompatActivity {
     private List<Assets> assetsAddList = new ArrayList<>();
     //负债账户集合
     private List<Assets> liabilityAddList = new ArrayList<>();
-    //资产数据库查询
-    private AssetsDao assetsAddDao = new AssetsDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

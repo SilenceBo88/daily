@@ -32,7 +32,6 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
     private Context mContext;
     private List<Assets> mAssetsList;
     private StartDragListener startDragListener;
-    private AssetsDao assetsDao = new AssetsDao();
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
@@ -117,7 +116,6 @@ public class AssetsAdapter extends RecyclerView.Adapter<AssetsAdapter.ViewHolder
     //接口回调的方法,来执行移动之后的操作
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        /*assetsDao.swapAssetsList(mAssetsList.get(fromPosition), mAssetsList.get(toPosition));*/
         //数据发生改变  两个数据交换位置
         Collections.swap(mAssetsList, fromPosition, toPosition);
         //刷新数据
