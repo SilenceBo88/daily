@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".UI.AddAssetsDetailActivity">
         </activity>
+        <activity android:name=".UI.AssetsDetailActivity">
+        </activity>
     </application>
 
 </manifest>
