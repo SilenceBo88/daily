@@ -50,4 +50,20 @@ public class AssetsDao {
     public boolean saveAssets(Assets temp) {
         return temp.save();
     }
+
+    //修改资产
+    public boolean updateAssets(Assets temp) {
+        ContentValues values = new ContentValues();
+        values.put("imageId", temp.getImageId());
+        values.put("name", temp.getName());
+        values.put("balance", temp.getBalance());
+        values.put("type", temp.getType());
+        values.put("remark", temp.getRemark());
+
+        return DataSupport.update(Assets.class, values, temp.getId()) == 1 ? true : false;
+    }
+
+    public boolean deleteAssets(Integer id) {
+        return DataSupport.delete(Assets.class, id) == 1 ? true : false;
+    }
 }
