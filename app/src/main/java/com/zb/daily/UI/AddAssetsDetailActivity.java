@@ -14,6 +14,8 @@ import com.zb.daily.R;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 /**
@@ -83,9 +85,9 @@ public class AddAssetsDetailActivity extends AppCompatActivity {
                 }
                 double balance = 0.00;
                 if (!balanceString.isEmpty()){
-                    balance = Double.valueOf(balanceString);
-                    DecimalFormat df = new DecimalFormat( "0.00");
-                    balance = Double.valueOf(df.format(balance));
+                    BigDecimal bal = new BigDecimal(balanceString);
+                    BigDecimal bal2= bal.setScale(2, RoundingMode.DOWN);
+                    balance = bal2.doubleValue();
                 }
 
                 Assets temp = new Assets();
