@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.AddAssetsActivity;
+import com.zb.daily.UI.TransferAssetsActivity;
 import com.zb.daily.UI.helper.MyItemTouchCallback;
 import com.zb.daily.UI.helper.StartDragListener;
 import com.zb.daily.adapter.AssetsAdapter;
@@ -105,7 +106,9 @@ public class AssetsFragment extends Fragment implements StartDragListener {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "转账", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent();
+                intent.setClass(activity, TransferAssetsActivity.class);
+                startActivityForResult(intent,1);
             }
         });
 

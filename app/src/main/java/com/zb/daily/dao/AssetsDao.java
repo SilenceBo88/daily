@@ -1,6 +1,7 @@
 package com.zb.daily.dao;
 
 import android.content.ContentValues;
+import com.zb.daily.adapter.AssetsDialogAdapter;
 import com.zb.daily.model.Assets;
 import org.litepal.crud.DataSupport;
 
@@ -21,6 +22,11 @@ public class AssetsDao {
     //按照资产类型查询资产集合
     public List<Assets> findAssetsListByType(Integer type){
         List<Assets> assetsList = DataSupport.where("type = ?", type.toString()).find(Assets.class);
+        return assetsList;
+    }
+
+    public List<Assets> findAssetsList() {
+        List<Assets> assetsList = DataSupport.findAll(Assets.class);
         return assetsList;
     }
 
@@ -66,4 +72,5 @@ public class AssetsDao {
     public boolean deleteAssets(Integer id) {
         return DataSupport.delete(Assets.class, id) == 1 ? true : false;
     }
+
 }

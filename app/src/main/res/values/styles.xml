@@ -26,9 +26,8 @@
         <!-- 设置弹出菜单文字颜色 -->
         <item name="android:textColor">@color/color_white</item>
     </style>
-
-
     <style name="AppTheme.ActionBar" parent="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="actionMenuTextColor">@color/color_white</item>
     </style>
+
 </resources>

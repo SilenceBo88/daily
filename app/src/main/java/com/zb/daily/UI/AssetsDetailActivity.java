@@ -84,7 +84,6 @@ public class AssetsDetailActivity extends AppCompatActivity {
             startActivityForResult(intent,1);
         }
         return true;
-
     }
 
     //创建菜单

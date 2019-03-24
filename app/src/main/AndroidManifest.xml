@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".UI.UpdateAssetsActivity">
         </activity>
+        <activity android:name=".UI.TransferAssetsActivity">
+        </activity>
     </application>
 
 </manifest>
