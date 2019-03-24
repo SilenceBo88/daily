@@ -25,6 +25,7 @@ import com.zb.daily.R;
 public class ChartFragment extends Fragment {
 
     public FragmentActivity activity;
+
     //悬浮按钮
     private FloatingActionButton fab;
     //滑动菜单
@@ -48,12 +49,12 @@ public class ChartFragment extends Fragment {
         //用Toolbar替换ActionBar
         setHasOptionsMenu(true);
         AppCompatActivity appCompatActivity= (AppCompatActivity) getActivity();
-        Toolbar toolbar=  appCompatActivity.findViewById(R.id.chart_toolbar);
+        Toolbar toolbar=  appCompatActivity.findViewById(R.id.fragment_chart_toolbar);
         toolbar.setTitle("");
         appCompatActivity.setSupportActionBar(toolbar);
 
         //菜单按钮打开滑动窗口
-        menuButton = activity.findViewById(R.id.chart_btn_menu);
+        menuButton = activity.findViewById(R.id.fragment_chart_btn_menu);
         drawerLayout = activity.findViewById(R.id.drawer_layout);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +64,7 @@ public class ChartFragment extends Fragment {
         });
 
         //悬浮按钮点击事件
-        fab = activity.findViewById(R.id.chart_fab);
+        fab = activity.findViewById(R.id.fragment_chart_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

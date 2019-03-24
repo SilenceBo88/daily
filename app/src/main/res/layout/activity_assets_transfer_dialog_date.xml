@@ -6,7 +6,7 @@
               android:orientation="vertical">
 
     <DatePicker
-            android:id="@+id/date_pick"
+            android:id="@+id/activity_assets_transfer_dialog_date_pick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:calendarViewShown="false"/>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--基础颜色-->
     <color name="colorPrimary">#36ccc2</color>
     <color name="colorPrimaryDark">#36ccc2</color>
     <color name="colorAccent">#FF4081</color>
@@ -10,4 +12,5 @@
     <color name="color_black">#000000</color>
     <color name="color_shallow_gray">#b3adad</color>
     <color name="color_shallow2_gray">#e6e3e3</color>
+
 </resources>

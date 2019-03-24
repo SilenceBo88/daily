@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".UI.TransferAssetsActivity">
+        tools:context=".UI.AssetsTransferActivity">
 
     <!--使用AppBarLayout布局解决遮挡Toobar的问题-->
     <LinearLayout
@@ -32,7 +32,7 @@
                         android:layout_height="wrap_content">
 
                     <Button
-                            android:id="@+id/assets_transfer_btn_pre"
+                            android:id="@+id/activity_assets_transfer_btn_pre"
                             android:layout_width="25dp"
                             android:layout_height="20dp"
                             android:layout_alignParentLeft="true"
@@ -47,7 +47,7 @@
                             android:text="转账"/>
 
                     <Button
-                            android:id="@+id/assets_transfer_btn_save"
+                            android:id="@+id/activity_assets_transfer_btn_save"
                             android:layout_width="40dp"
                             android:layout_height="20dp"
                             android:layout_alignParentRight="true"
@@ -59,7 +59,9 @@
                             android:text="保存"/>
 
                 </RelativeLayout>
+
             </android.support.v7.widget.Toolbar>
+
         </android.support.design.widget.AppBarLayout>
 
     </LinearLayout>
@@ -70,7 +72,7 @@
             android:orientation="vertical">
 
         <LinearLayout
-                android:id="@+id/assets_transfer_out"
+                android:id="@+id/activity_assets_transfer_out"
                 android:layout_width="match_parent"
                 android:layout_margin="5dp"
                 android:layout_height="50dp"
@@ -93,18 +95,20 @@
                     android:layout_gravity="center_vertical">
 
                 <TextView
-                        android:id="@+id/assets_transfer_out_text"
+                        android:id="@+id/activity_assets_transfer_out_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"
                         android:textColor="@color/color_black"
                         android:textSize="18sp"
                         android:text=""/>
+
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-                android:id="@+id/assets_transfer_in"
+                android:id="@+id/activity_assets_transfer_in"
                 android:layout_width="match_parent"
                 android:layout_margin="5dp"
                 android:layout_height="50dp"
@@ -127,14 +131,16 @@
                     android:layout_gravity="center_vertical">
 
                 <TextView
-                        android:id="@+id/assets_transfer_in_text"
+                        android:id="@+id/activity_assets_transfer_in_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"
                         android:textColor="@color/color_black"
                         android:textSize="18sp"
                         android:text=""/>
+
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -168,11 +174,13 @@
                         android:background="@null"
                         android:inputType="number|numberDecimal"
                         android:hint="0.00"/>
+
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
-                android:id="@+id/assets_transfer_date"
+                android:id="@+id/activity_assets_transfer_date"
                 android:layout_width="match_parent"
                 android:layout_margin="5dp"
                 android:layout_height="50dp"
@@ -195,14 +203,16 @@
                     android:layout_gravity="center_vertical">
 
                 <TextView
-                        android:id="@+id/assets_transfer_date_text"
+                        android:id="@+id/activity_assets_transfer_date_text"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"
                         android:textColor="@color/color_black"
                         android:textSize="18sp"
                         android:text=""/>
+
             </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout
@@ -235,7 +245,9 @@
                         android:gravity="right"
                         android:background="@null"
                         android:hint="请输入备注"/>
+
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

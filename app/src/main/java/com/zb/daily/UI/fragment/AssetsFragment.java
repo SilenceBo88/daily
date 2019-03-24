@@ -18,14 +18,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
-import com.zb.daily.UI.AddAssetsActivity;
-import com.zb.daily.UI.TransferAssetsActivity;
+import com.zb.daily.UI.AssetsAddActivity;
+import com.zb.daily.UI.AssetsTransferActivity;
 import com.zb.daily.UI.helper.MyItemTouchCallback;
 import com.zb.daily.UI.helper.StartDragListener;
-import com.zb.daily.adapter.AssetsAdapter;
+import com.zb.daily.adapter.AssetsMainListAdapter;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
 
@@ -35,7 +34,7 @@ import java.util.List;
 /**
  * @auther: zb
  * @Date: 2019/2/22 18:01
- * @Description: 资产列表页面
+ * @Description: 资产管理页面，实现StartDragListener主要用来实现长按交换item数据
  */
 public class AssetsFragment extends Fragment implements StartDragListener {
 
@@ -76,12 +75,12 @@ public class AssetsFragment extends Fragment implements StartDragListener {
         //用Toolbar替换ActionBar
         setHasOptionsMenu(true);
         AppCompatActivity appCompatActivity= (AppCompatActivity) getActivity();
-        Toolbar toolbar=  appCompatActivity.findViewById(R.id.assets_toolbar);
+        Toolbar toolbar=  appCompatActivity.findViewById(R.id.fragment_assets_toolbar);
         toolbar.setTitle("");
         appCompatActivity.setSupportActionBar(toolbar);
 
         //菜单按钮打开滑动窗口
-        menuButton = activity.findViewById(R.id.assets_btn_menu);
+        menuButton = activity.findViewById(R.id.fragment_assets_btn_menu);
         drawerLayout = activity.findViewById(R.id.drawer_layout);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,24 +89,24 @@ public class AssetsFragment extends Fragment implements StartDragListener {
             }
         });
 
-        //添加按钮点击事件
-        addButton = activity.findViewById(R.id.assets_btn_add);
+        //添加按钮点击事件，打开添加资产页面
+        addButton = activity.findViewById(R.id.fragment_assets_btn_add);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(activity, AddAssetsActivity.class);
+                intent.setClass(activity, AssetsAddActivity.class);
                 startActivityForResult(intent,1);
             }
         });
 
-        //悬浮按钮点击事件
-        fab = activity.findViewById(R.id.assets_fab);
+        //悬浮按钮点击事件，打开转账页面
+        fab = activity.findViewById(R.id.fragment_assets_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(activity, TransferAssetsActivity.class);
+                intent.setClass(activity, AssetsTransferActivity.class);
                 startActivityForResult(intent,1);
             }
         });
@@ -116,32 +115,32 @@ public class AssetsFragment extends Fragment implements StartDragListener {
         assetsList = assetsDao.findAssetsListByType(1);
         liabilityList = assetsDao.findAssetsListByType(2);
 
-        //资产账户的滑动控件
-        RecyclerView assetsRecyclerView = activity.findViewById(R.id.assets_assets_recyclerView);
+        //资产账户的list适配
+        RecyclerView assetsRecyclerView = activity.findViewById(R.id.fragment_assets_assetsRecyclerView);
         LinearLayoutManager assetsLayoutManager = new LinearLayoutManager(MyApplication.getContext());
         assetsRecyclerView.setLayoutManager(assetsLayoutManager);
-        AssetsAdapter assetsAdapter = new AssetsAdapter(assetsList, this);
+        AssetsMainListAdapter assetsAdapter = new AssetsMainListAdapter(assetsList, this);
         assetsRecyclerView.setAdapter(assetsAdapter);
 
-        //负债账户的滑动控件
-        RecyclerView liabilityRecyclerView = activity.findViewById(R.id.assets_liability_recyclerView);
+        //负债账户的list适配
+        RecyclerView liabilityRecyclerView = activity.findViewById(R.id.fragment_assets_liabilityRecyclerView);
         LinearLayoutManager liabilityLayoutManager = new LinearLayoutManager(MyApplication.getContext());
         liabilityRecyclerView.setLayoutManager(liabilityLayoutManager);
-        AssetsAdapter liabilityAdapter = new AssetsAdapter(liabilityList, this);
+        AssetsMainListAdapter liabilityAdapter = new AssetsMainListAdapter(liabilityList, this);
         liabilityRecyclerView.setAdapter(liabilityAdapter);
 
-        //assetsRecyclerView 注册item滑动事件
+        //资产账户RecyclerView 注册item触摸事件，来实现长按交换item数据
         ItemTouchHelper.Callback callback = new MyItemTouchCallback(assetsAdapter);
         itemtouchhelper = new ItemTouchHelper(callback);
         itemtouchhelper.attachToRecyclerView(assetsRecyclerView);
 
-        //liabilityRecyclerView 注册item滑动事件
+        //负债账户RecyclerView 注册item触摸事件，来实现长按交换item数据
         ItemTouchHelper.Callback callback2 = new MyItemTouchCallback(liabilityAdapter);
         itemtouchhelper2 = new ItemTouchHelper(callback2);
         itemtouchhelper2.attachToRecyclerView(liabilityRecyclerView);
     }
 
-    //执行点击图标进行拖动的效果
+    //实现长按交换item数据
     @Override
     public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
         itemtouchhelper.startDrag(viewHolder);

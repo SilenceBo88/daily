@@ -17,15 +17,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".UI.AddAssetsActivity">
+        <activity android:name=".UI.AssetsAddActivity">
         </activity>
-        <activity android:name=".UI.AddAssetsDetailActivity">
+        <activity android:name=".UI.AssetsNewActivity">
         </activity>
         <activity android:name=".UI.AssetsDetailActivity">
         </activity>
-        <activity android:name=".UI.UpdateAssetsActivity">
+        <activity android:name=".UI.AssetsUpdateActivity">
         </activity>
-        <activity android:name=".UI.TransferAssetsActivity">
+        <activity android:name=".UI.AssetsTransferActivity">
         </activity>
     </application>
 

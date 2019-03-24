@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.zb.daily.R;
-import com.zb.daily.UI.AddAssetsDetailActivity;
+import com.zb.daily.UI.AssetsNewActivity;
 import com.zb.daily.model.Assets;
 
 import java.util.List;
@@ -21,13 +21,18 @@ import java.util.List;
 /**
  * @auther: zb
  * @Date: 2019/2/22 18:01
- * @Description: 资产添加滚动控件的适配器
+ * @Description: 添加资产页面的list的适配器
  */
-public class AssetsAddAdapter extends RecyclerView.Adapter<AssetsAddAdapter.ViewHolder>{
+public class AssetsAddListAdapter extends RecyclerView.Adapter<AssetsAddListAdapter.ViewHolder>{
 
     private Context mContext;
     private List<Assets> mAssetsList;
 
+    public AssetsAddListAdapter(List<Assets> assetsList) {
+        mAssetsList = assetsList;
+    }
+
+    //初始化item中的属性
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
         ImageView assetsImage;
@@ -36,13 +41,9 @@ public class AssetsAddAdapter extends RecyclerView.Adapter<AssetsAddAdapter.View
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
-            assetsImage = view.findViewById( R.id.assets_image);
-            assetsName = view.findViewById(R.id.assets_name);
+            assetsImage = view.findViewById( R.id.item_assets_addList_image);
+            assetsName = view.findViewById(R.id.item_assets_addList_name);
         }
-    }
-
-    public AssetsAddAdapter(List<Assets> assetsList) {
-        mAssetsList = assetsList;
     }
 
     @Override
@@ -50,26 +51,27 @@ public class AssetsAddAdapter extends RecyclerView.Adapter<AssetsAddAdapter.View
         if (mContext == null) {
             mContext = parent.getContext();
         }
-        final View view = LayoutInflater.from(mContext).inflate(R.layout.item_add_assets, parent, false);
+
+        final View view = LayoutInflater.from(mContext).inflate(R.layout.item_assets_addList, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
-        //滑动控件的点击事件
+        //list中的每个item的点击事件，打开新建资产页面
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            int position = holder.getAdapterPosition();
-            Assets assets = mAssetsList.get(position);
+                int position = holder.getAdapterPosition();
+                Assets assets = mAssetsList.get(position);
 
-            Intent intent = new Intent();
-            intent.setClass(mContext, AddAssetsDetailActivity.class);
-            intent.putExtra("assets", JSONObject.toJSONString(assets));
-            ((AppCompatActivity)mContext).startActivityForResult(intent,1);
+                Intent intent = new Intent();
+                intent.setClass(mContext, AssetsNewActivity.class);
+                intent.putExtra("assets", JSONObject.toJSONString(assets));
+                ((AppCompatActivity)mContext).startActivityForResult(intent,1);
             }
         });
         return holder;
     }
 
-    //绑定数据到列表项
+    //绑定数据到item
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Assets assets = mAssetsList.get(position);
@@ -77,6 +79,7 @@ public class AssetsAddAdapter extends RecyclerView.Adapter<AssetsAddAdapter.View
         Glide.with(mContext).load(assets.getImageId()).into(holder.assetsImage);
     }
 
+    //获取item数量
     @Override
     public int getItemCount() {
         return mAssetsList.size();

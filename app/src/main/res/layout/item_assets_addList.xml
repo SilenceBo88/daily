@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--资产列表项布局-->
+<!--添加资产页面的item的布局-->
 <android.support.v7.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -15,14 +15,14 @@
             android:orientation="horizontal">
 
         <ImageView
-                android:id="@+id/assets_image"
+                android:id="@+id/item_assets_addList_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:src="@drawable/assets_cash"/>
 
         <TextView
-                android:id="@+id/assets_name"
+                android:id="@+id/item_assets_addList_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
@@ -36,12 +36,15 @@
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:layout_gravity="center_vertical">
+
             <ImageView
-                    android:id="@+id/assets_right_image"
                     android:layout_width="30dp"
                     android:layout_height="25dp"
                     android:layout_margin="10dp"
                     android:src="@drawable/ic_right_arrow"/>
+
         </LinearLayout>
+
     </LinearLayout>
+
 </android.support.v7.widget.CardView>

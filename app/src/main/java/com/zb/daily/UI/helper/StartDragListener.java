@@ -8,5 +8,6 @@ import android.support.v7.widget.RecyclerView;
  * @Description: 滑动切换接口
  */
 public interface StartDragListener {
+
     public void onStartDrag(RecyclerView.ViewHolder viewHolder);
 }

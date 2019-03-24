@@ -1,7 +1,6 @@
 package com.zb.daily.dao;
 
 import android.content.ContentValues;
-import com.zb.daily.adapter.AssetsDialogAdapter;
 import com.zb.daily.model.Assets;
 import org.litepal.crud.DataSupport;
 
@@ -10,13 +9,30 @@ import java.util.List;
 /**
  * @auther: zb
  * @Date: 2019/2/25 21:34
- * @Description: 资产数据库操作
+ * @Description: 数据库资产表的crud操作
  */
 public class AssetsDao {
+
+    //保存资产
+    public boolean saveAssets(Assets temp) {
+        return temp.save();
+    }
 
     //保存资产集合
     public void saveAssetsList(List<Assets> assetsList){
         DataSupport.saveAll(assetsList);
+    }
+
+    //按照资产id查询资产
+    public Assets findAssetsById(Integer id){
+        Assets assets = DataSupport.find(Assets.class, id);
+        return assets;
+    }
+
+    //查询所有资产集合
+    public List<Assets> findAssetsList() {
+        List<Assets> assetsList = DataSupport.findAll(Assets.class);
+        return assetsList;
     }
 
     //按照资产类型查询资产集合
@@ -25,9 +41,16 @@ public class AssetsDao {
         return assetsList;
     }
 
-    public List<Assets> findAssetsList() {
-        List<Assets> assetsList = DataSupport.findAll(Assets.class);
-        return assetsList;
+    //修改资产
+    public boolean updateAssets(Assets temp) {
+        ContentValues values = new ContentValues();
+        values.put("imageId", temp.getImageId());
+        values.put("name", temp.getName());
+        values.put("balance", temp.getBalance());
+        values.put("type", temp.getType());
+        values.put("remark", temp.getRemark());
+
+        return DataSupport.update(Assets.class, values, temp.getId()) == 1 ? true : false;
     }
 
     //替换旧的资产列表
@@ -46,29 +69,7 @@ public class AssetsDao {
         }
     }
 
-    //按照资产类型查询资产
-    public Assets findAssetsById(Integer id){
-        Assets assets = DataSupport.find(Assets.class, id);
-        return assets;
-    }
-
-    //保存资产
-    public boolean saveAssets(Assets temp) {
-        return temp.save();
-    }
-
-    //修改资产
-    public boolean updateAssets(Assets temp) {
-        ContentValues values = new ContentValues();
-        values.put("imageId", temp.getImageId());
-        values.put("name", temp.getName());
-        values.put("balance", temp.getBalance());
-        values.put("type", temp.getType());
-        values.put("remark", temp.getRemark());
-
-        return DataSupport.update(Assets.class, values, temp.getId()) == 1 ? true : false;
-    }
-
+    //删除资产
     public boolean deleteAssets(Integer id) {
         return DataSupport.delete(Assets.class, id) == 1 ? true : false;
     }

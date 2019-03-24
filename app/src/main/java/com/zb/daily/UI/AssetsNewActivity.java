@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.hjq.toast.ToastUtils;
 import com.zb.daily.Constant;
 import com.zb.daily.R;
@@ -19,20 +17,25 @@ import com.zb.daily.model.Assets;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class UpdateAssetsActivity extends AppCompatActivity {
+/**
+ * @auther: zb
+ * @Date: 2019/3/9 18:01
+ * @Description: 新建资产页面
+ */
+public class AssetsNewActivity extends AppCompatActivity {
 
     //返回按钮
-    private Button updatePreButton;
+    private Button addDetailPreButton;
     //保存按钮
-    private Button updateSaveButton;
+    private Button addDetailSaveButton;
     //图片
-    private ImageView updateImageView;
+    private ImageView addDetailimageView;
     //名称
-    private EditText updateName;
+    private EditText addDetailName;
     //备注
-    private EditText updateRemark;
+    private EditText addDetailRemark;
     //余额
-    private EditText updateBalance;
+    private EditText addDetailBalance;
     //查询数据库
     private AssetsDao assetsDao = new AssetsDao();
 
@@ -41,38 +44,36 @@ public class UpdateAssetsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_assets);
+        setContentView(R.layout.activity_assets_new);
 
-        updatePreButton = findViewById(R.id.assets_update_btn_pre);
-        updateSaveButton = findViewById(R.id.assets_update_btn_save);
-        updateImageView = findViewById(R.id.assets_update_image);
-        updateName = findViewById(R.id.assets_update_name);
-        updateRemark = findViewById(R.id.assets_update_remark);
-        updateBalance = findViewById(R.id.assets_update_balance);
+        addDetailPreButton = findViewById(R.id.activity_assets_new_btn_pre);
+        addDetailSaveButton = findViewById(R.id.activity_assets_new_btn_save);
+        addDetailimageView = findViewById(R.id.activity_assets_new_image);
+        addDetailName = findViewById(R.id.activity_assets_new_name);
+        addDetailRemark = findViewById(R.id.activity_assets_new_remark);
+        addDetailBalance = findViewById(R.id.activity_assets_new_balance);
 
+        //获取活动传递的数据
         String jsonString = getIntent().getStringExtra("assets");
         assets = JSON.parseObject(jsonString, Assets.class);
-
-        updateImageView.setImageResource(assets.getImageId());
-        updateName.setText(assets.getName());
-        updateRemark.setText(assets.getRemark());
-        updateBalance.setText(assets.getBalance().toString());
+        addDetailimageView.setImageResource(assets.getImageId());
+        addDetailName.setText(assets.getName());
 
         //返回上一个活动
-        updatePreButton.setOnClickListener(new View.OnClickListener() {
+        addDetailPreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UpdateAssetsActivity.this.finish();
+                AssetsNewActivity.this.finish();
             }
         });
 
-        //保存新的资产
-        updateSaveButton.setOnClickListener(new View.OnClickListener(){
+        //保存新的资产，并返回资产页面
+        addDetailSaveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String name = updateName.getText().toString();
-                String remark = updateRemark.getText().toString();
-                String balanceString = updateBalance.getText().toString();
+                String name = addDetailName.getText().toString();
+                String remark = addDetailRemark.getText().toString();
+                String balanceString = addDetailBalance.getText().toString();
 
                 if (name.isEmpty()){
                     ToastUtils.show("资产名称不能为空");
@@ -89,18 +90,17 @@ public class UpdateAssetsActivity extends AppCompatActivity {
                 }
 
                 Assets temp = new Assets();
-                temp.setId(assets.getId());
                 temp.setImageId(assets.getImageId());
                 temp.setType(assets.getType());
                 temp.setName(name);
                 temp.setRemark(remark);
                 temp.setBalance(balance);
 
-                if (assetsDao.updateAssets(temp)){
-                    ToastUtils.show("修改成功");
+                if (assetsDao.saveAssets(temp)){
+                    ToastUtils.show("添加成功");
                     Intent intent = new Intent();
-                    intent.setClass(UpdateAssetsActivity.this, AssetsDetailActivity.class);
-                    intent.putExtra("assets", JSONObject.toJSONString(temp));
+                    intent.setClass(AssetsNewActivity.this, MainActivity.class);
+                    intent.putExtra("to", Constant.TO_ASSETS_FRAGMENT);
                     startActivityForResult(intent,1);
                 }
             }

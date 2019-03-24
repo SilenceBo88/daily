@@ -15,7 +15,6 @@
 
         <!--新的标题栏-->
         <android.support.v7.widget.Toolbar
-                android:id="@+id/assets_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:titleTextColor="@color/color_white"
@@ -26,7 +25,7 @@
                     android:layout_height="wrap_content">
 
                 <Button
-                        android:id="@+id/assets_add_btn_pre"
+                        android:id="@+id/activity_assets_add_btn_pre"
                         android:layout_width="25dp"
                         android:layout_height="20dp"
                         android:layout_alignParentLeft="true"
@@ -41,7 +40,9 @@
                         android:text="添加资产"/>
 
             </RelativeLayout>
+
         </android.support.v7.widget.Toolbar>
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
@@ -58,6 +59,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -66,10 +68,11 @@
                         android:textSize="20sp"
                         android:text="资产账户"
                         android:textColor="@color/color_gray"/>
+
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                    android:id="@+id/assets_add_assets_recyclerView"
+                    android:id="@+id/activity_assets_add_assets_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
@@ -77,6 +80,7 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -85,14 +89,16 @@
                         android:textSize="20sp"
                         android:text="负债账户"
                         android:textColor="@color/color_gray"/>
+
             </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
-                    android:id="@+id/assets_add_liability_recyclerView"
+                    android:id="@+id/activity_assets_add_liability_recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
 
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
 
 </android.support.design.widget.CoordinatorLayout>

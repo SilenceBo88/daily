@@ -22,7 +22,7 @@ import org.litepal.tablemanager.Connector;
 /**
  * @auther: zb
  * @Date: 2019/2/20 14:09
- * @Description: 主活动
+ * @Description: 主活动，包含多个fragment
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         //创建数据库
         Connector.getDatabase();
 
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
-    //退出程序
+    //双击退出程序
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         //判断用户是否点击了“返回键”

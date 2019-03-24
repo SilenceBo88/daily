@@ -9,28 +9,21 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.Toast;
-import com.zb.daily.MyApplication;
 import com.zb.daily.R;
-import com.zb.daily.adapter.AssetsAdapter;
-import com.zb.daily.model.Assets;
-
-import java.util.List;
 
 /**
  * @auther: zb
  * @Date: 2019/2/22 18:01
- * @Description: 主页面
+ * @Description: 记账主页面
  */
 public class IndexFragment extends Fragment {
 
     public FragmentActivity activity;
+
     //悬浮按钮
     private FloatingActionButton fab;
     //滑动菜单
@@ -43,7 +36,7 @@ public class IndexFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         activity = getActivity();
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_index, container, false);
         return view;
     }
 
@@ -54,12 +47,12 @@ public class IndexFragment extends Fragment {
         //用Toolbar替换ActionBar
         setHasOptionsMenu(true);
         AppCompatActivity appCompatActivity= (AppCompatActivity) getActivity();
-        Toolbar toolbar=  appCompatActivity.findViewById(R.id.index_toolbar);
+        Toolbar toolbar=  appCompatActivity.findViewById(R.id.fragment_index_toolbar);
         toolbar.setTitle("");
         appCompatActivity.setSupportActionBar(toolbar);
 
         //菜单按钮打开滑动窗口
-        menuButton = activity.findViewById(R.id.index_btn_menu);
+        menuButton = activity.findViewById(R.id.fragment_index_btn_menu);
         drawerLayout = activity.findViewById(R.id.drawer_layout);
         menuButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +62,7 @@ public class IndexFragment extends Fragment {
         });
 
         //悬浮按钮点击事件
-        fab = activity.findViewById(R.id.index_fab);
+        fab = activity.findViewById(R.id.fragment_index_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

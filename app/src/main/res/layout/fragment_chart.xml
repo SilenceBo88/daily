@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--图表主页面-->
+<!--图表页面-->
 <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,14 +14,14 @@
 
         <!--新的标题栏-->
         <android.support.v7.widget.Toolbar
-                android:id="@+id/chart_toolbar"
+                android:id="@+id/fragment_chart_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:titleTextColor="@color/color_white"
                 app:layout_collapseMode="pin">
 
             <Button
-                    android:id="@+id/chart_btn_menu"
+                    android:id="@+id/fragment_chart_btn_menu"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:background="@drawable/ic_menu"/>
@@ -160,7 +160,6 @@
                     app:cardCornerRadius="4dp">
 
                 <TextView
-                        android:id="@+id/fruit_content_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
@@ -171,7 +170,7 @@
 
     <!--悬浮按钮-->
     <android.support.design.widget.FloatingActionButton
-            android:id="@+id/chart_fab"
+            android:id="@+id/fragment_chart_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

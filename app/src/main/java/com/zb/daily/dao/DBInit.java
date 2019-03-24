@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @auther: zb
  * @Date: 2019/2/25 21:56
- * @Description: 数据库初始化
+ * @Description: 初始化数据库中的数据，安装app时执行一次
  */
 public class DBInit {
 
@@ -21,6 +21,7 @@ public class DBInit {
     public static void assetsInit(){
 
         AssetsDao assetsDao = new AssetsDao();
+
         //资产集合
         List<Assets> assetsList = new ArrayList<>();
 
@@ -47,10 +48,11 @@ public class DBInit {
         assetsList.add(liability3);
         assetsList.add(liability4);
 
+        //一份保存到数据库，以便正常crud
         assetsDao.saveAssetsList(assetsList);
 
+        //另一份以json格式保存到SharedPreference中，在添加资产页面初始化list时使用
         String jsonString = JSONArray.toJSONString(assetsList);
-        //保存一份到添加资产
-        SPUtil.put(MyApplication.getContext(), Constant.ASSETS_ADD_TEXT, jsonString);
+        SPUtil.put(MyApplication.getContext(), Constant.TEXT_ASSETS_ADD_LIST, jsonString);
     }
 }
