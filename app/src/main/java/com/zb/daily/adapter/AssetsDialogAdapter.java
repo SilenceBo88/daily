@@ -49,7 +49,7 @@ public class AssetsDialogAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder hv;
         if (null==convertView){
-            convertView = inflater.inflate(R.layout.item_assets_transfer_dialogList,null,false);
+            convertView = inflater.inflate(R.layout.item_assets_transfer_dialog_list,null,false);
             hv = new ViewHolder(convertView);
             convertView.setTag(hv);
         }else {

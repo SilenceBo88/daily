@@ -63,7 +63,7 @@ public class AssetsMainListAdapter extends RecyclerView.Adapter<AssetsMainListAd
             mContext = parent.getContext();
         }
 
-        final View view = LayoutInflater.from(mContext).inflate(R.layout.item_assets_mainList, parent, false);
+        final View view = LayoutInflater.from(mContext).inflate(R.layout.item_assets_main_list, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
         //list中的每个item的点击事件，打开资产详情页面

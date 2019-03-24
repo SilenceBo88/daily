@@ -52,7 +52,7 @@ public class AssetsAddListAdapter extends RecyclerView.Adapter<AssetsAddListAdap
             mContext = parent.getContext();
         }
 
-        final View view = LayoutInflater.from(mContext).inflate(R.layout.item_assets_addList, parent, false);
+        final View view = LayoutInflater.from(mContext).inflate(R.layout.item_assets_add_list, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
         //list中的每个item的点击事件，打开新建资产页面
