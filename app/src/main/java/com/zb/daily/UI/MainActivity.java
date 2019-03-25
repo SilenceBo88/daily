@@ -1,5 +1,6 @@
 package com.zb.daily.UI;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import com.hjq.toast.ToastUtils;
+import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
 import com.zb.daily.R;
 import com.zb.daily.UI.fragment.AssetsFragment;
@@ -24,7 +26,7 @@ import org.litepal.tablemanager.Connector;
  * @Date: 2019/2/20 14:09
  * @Description: 主活动，包含多个fragment
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     //滑动菜单
     private DrawerLayout drawerLayout;
@@ -112,5 +114,14 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    //启动本活动
+    public static void actionStart(Context context, int to){
+        Intent intent = new Intent();
+        intent.setClass(context, MainActivity.class);
+        intent.putExtra("to", to);
+        context.startActivity(intent);
+        /*((BaseActivity)context).startActivityForResult(intent,1);*/
     }
 }

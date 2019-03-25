@@ -61,11 +61,7 @@ public class AssetsAddListAdapter extends RecyclerView.Adapter<AssetsAddListAdap
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Assets assets = mAssetsList.get(position);
-
-                Intent intent = new Intent();
-                intent.setClass(mContext, AssetsNewActivity.class);
-                intent.putExtra("assets", JSONObject.toJSONString(assets));
-                ((AppCompatActivity)mContext).startActivityForResult(intent,1);
+                AssetsNewActivity.actionStart(mContext, assets);
             }
         });
         return holder;

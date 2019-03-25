@@ -1,5 +1,6 @@
 package com.zb.daily.UI;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.*;
+import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
@@ -24,7 +26,7 @@ import java.util.List;
  * @Date: 2019/3/24 10:27
  * @Description: 资产转账页面
  */
-public class AssetsTransferActivity extends AppCompatActivity {
+public class AssetsTransferActivity extends BaseActivity {
 
     private LinearLayout outLinearLayout;
     private LinearLayout inLinearLayout;
@@ -82,10 +84,7 @@ public class AssetsTransferActivity extends AppCompatActivity {
         preButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(AssetsTransferActivity.this, MainActivity.class);
-                intent.putExtra("to", Constant.TO_ASSETS_FRAGMENT);
-                startActivityForResult(intent,1);
+                MainActivity.actionStart(AssetsTransferActivity.this, Constant.TO_ASSETS_FRAGMENT);
             }
         });
 
@@ -97,10 +96,7 @@ public class AssetsTransferActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK){
-            Intent intent = new Intent();
-            intent.setClass(AssetsTransferActivity.this, MainActivity.class);
-            intent.putExtra("to", Constant.TO_ASSETS_FRAGMENT);
-            startActivityForResult(intent,1);
+            MainActivity.actionStart(AssetsTransferActivity.this, Constant.TO_ASSETS_FRAGMENT);
         }
         return true;
     }
@@ -170,5 +166,13 @@ public class AssetsTransferActivity extends AppCompatActivity {
 
         //自动弹出键盘问题解决
         dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+    }
+
+    //启动本活动
+    public static void actionStart(Context context){
+        Intent intent = new Intent();
+        intent.setClass(context, AssetsTransferActivity.class);
+        context.startActivity(intent);
+        /*((BaseActivity)context).startActivityForResult(intent,1);*/
     }
 }

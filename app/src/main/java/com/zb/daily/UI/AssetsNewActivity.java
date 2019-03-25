@@ -1,5 +1,6 @@
 package com.zb.daily.UI;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.hjq.toast.ToastUtils;
+import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
 import com.zb.daily.R;
 import com.zb.daily.dao.AssetsDao;
@@ -22,7 +25,7 @@ import java.math.RoundingMode;
  * @Date: 2019/3/9 18:01
  * @Description: 新建资产页面
  */
-public class AssetsNewActivity extends AppCompatActivity {
+public class AssetsNewActivity extends BaseActivity {
 
     //返回按钮
     private Button addDetailPreButton;
@@ -98,12 +101,18 @@ public class AssetsNewActivity extends AppCompatActivity {
 
                 if (assetsDao.saveAssets(temp)){
                     ToastUtils.show("添加成功");
-                    Intent intent = new Intent();
-                    intent.setClass(AssetsNewActivity.this, MainActivity.class);
-                    intent.putExtra("to", Constant.TO_ASSETS_FRAGMENT);
-                    startActivityForResult(intent,1);
+                    MainActivity.actionStart(AssetsNewActivity.this, Constant.TO_ASSETS_FRAGMENT);
                 }
             }
         });
+    }
+
+    //启动本活动
+    public static void actionStart(Context context, Assets assets){
+        Intent intent = new Intent();
+        intent.setClass(context, AssetsNewActivity.class);
+        intent.putExtra("assets", JSONObject.toJSONString(assets));
+        context.startActivity(intent);
+        /*((BaseActivity)context).startActivityForResult(intent,1);*/
     }
 }

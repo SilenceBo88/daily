@@ -1,5 +1,6 @@
 package com.zb.daily.UI;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hjq.toast.ToastUtils;
+import com.zb.daily.BaseActivity;
 import com.zb.daily.R;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
@@ -22,7 +24,7 @@ import java.math.RoundingMode;
  * @Date: 2019/3/23 15:27
  * @Description: 修改资产页面
  */
-public class AssetsUpdateActivity extends AppCompatActivity {
+public class AssetsUpdateActivity extends BaseActivity {
 
     //返回按钮
     private Button updatePreButton;
@@ -101,12 +103,18 @@ public class AssetsUpdateActivity extends AppCompatActivity {
                 if (assetsDao.updateAssets(temp)){
                     //修改成功，返回资产详情页面
                     ToastUtils.show("修改成功");
-                    Intent intent = new Intent();
-                    intent.setClass(AssetsUpdateActivity.this, AssetsDetailActivity.class);
-                    intent.putExtra("assets", JSONObject.toJSONString(temp));
-                    startActivityForResult(intent,1);
+                    AssetsDetailActivity.actionStart(AssetsUpdateActivity.this, temp);
                 }
             }
         });
+    }
+
+    //启动本活动
+    public static void actionStart(Context context, Assets assets){
+        Intent intent = new Intent();
+        intent.setClass(context, AssetsUpdateActivity.class);
+        intent.putExtra("assets", JSONObject.toJSONString(assets));
+        context.startActivity(intent);
+        /*((BaseActivity)context).startActivityForResult(intent,1);*/
     }
 }

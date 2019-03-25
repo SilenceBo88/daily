@@ -1,5 +1,6 @@
 package com.zb.daily.UI;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.hjq.toast.ToastUtils;
+import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
 import com.zb.daily.R;
 import com.zb.daily.dao.AssetsDao;
@@ -26,7 +28,7 @@ import com.zb.daily.model.Assets;
  * @Date: 2019/3/23 14:01
  * @Description: 资产详情页面
  */
-public class AssetsDetailActivity extends AppCompatActivity {
+public class AssetsDetailActivity extends BaseActivity {
 
     //返回按钮
     private Button assetsDetailPreButton;
@@ -76,10 +78,7 @@ public class AssetsDetailActivity extends AppCompatActivity {
         assetsDetailPreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(AssetsDetailActivity.this, MainActivity.class);
-                intent.putExtra("to", Constant.TO_ASSETS_FRAGMENT);
-                startActivityForResult(intent,1);
+                MainActivity.actionStart(AssetsDetailActivity.this, Constant.TO_ASSETS_FRAGMENT);
             }
         });
 
@@ -90,10 +89,7 @@ public class AssetsDetailActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode==KeyEvent.KEYCODE_BACK){
-            Intent intent = new Intent();
-            intent.setClass(AssetsDetailActivity.this, MainActivity.class);
-            intent.putExtra("to", Constant.TO_ASSETS_FRAGMENT);
-            startActivityForResult(intent,1);
+            MainActivity.actionStart(AssetsDetailActivity.this, Constant.TO_ASSETS_FRAGMENT);
         }
         return true;
     }
@@ -111,10 +107,7 @@ public class AssetsDetailActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.assets_detail_update:
                 //去修改资产页面
-                Intent intent = new Intent();
-                intent.setClass(this, AssetsUpdateActivity.class);
-                intent.putExtra("assets", JSONObject.toJSONString(assets));
-                startActivityForResult(intent,1);
+                AssetsUpdateActivity.actionStart(AssetsDetailActivity.this, assets);
                 break;
             case R.id.assets_detail_delete:
                 //弹出删除资产确定框
@@ -137,11 +130,7 @@ public class AssetsDetailActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         if(assetsDao.deleteAssets(assets.getId())){
                             //删除成功，返回资产页面
-                            ToastUtils.show("删除成功");
-                            Intent intent = new Intent();
-                            intent.setClass(AssetsDetailActivity.this, MainActivity.class);
-                            intent.putExtra("to", Constant.TO_ASSETS_FRAGMENT);
-                            startActivityForResult(intent,1);
+                            MainActivity.actionStart(AssetsDetailActivity.this, Constant.TO_ASSETS_FRAGMENT);
                         }
                     }
                 });
@@ -154,5 +143,14 @@ public class AssetsDetailActivity extends AppCompatActivity {
                 });
         // 显示
         normalDialog.show();
+    }
+
+    //启动本活动
+    public static void actionStart(Context context, Assets assets){
+        Intent intent = new Intent();
+        intent.setClass(context, AssetsDetailActivity.class);
+        intent.putExtra("assets", JSONObject.toJSONString(assets));
+        context.startActivity(intent);
+        /*((BaseActivity)context).startActivityForResult(intent,1);*/
     }
 }

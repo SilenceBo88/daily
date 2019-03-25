@@ -94,9 +94,7 @@ public class AssetsFragment extends Fragment implements StartDragListener {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(activity, AssetsAddActivity.class);
-                startActivityForResult(intent,1);
+                AssetsAddActivity.actionStart(activity);
             }
         });
 
@@ -105,9 +103,7 @@ public class AssetsFragment extends Fragment implements StartDragListener {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(activity, AssetsTransferActivity.class);
-                startActivityForResult(intent,1);
+                AssetsTransferActivity.actionStart(activity);
             }
         });
 

@@ -1,5 +1,7 @@
 package com.zb.daily.UI;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import com.alibaba.fastjson.JSONArray;
+import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
@@ -22,7 +25,7 @@ import java.util.List;
  * @Date: 2019/2/22 18:01
  * @Description: 添加资产页面
  */
-public class AssetsAddActivity extends AppCompatActivity {
+public class AssetsAddActivity extends BaseActivity {
 
     //返回按钮
     private Button addPreButton;
@@ -76,5 +79,13 @@ public class AssetsAddActivity extends AppCompatActivity {
         liabilityRecyclerView.setLayoutManager(liabilityLayoutManager);
         AssetsAddListAdapter liabilityAdapter = new AssetsAddListAdapter(liabilityAddList);
         liabilityRecyclerView.setAdapter(liabilityAdapter);
+    }
+
+    //启动本活动
+    public static void actionStart(Context context){
+        Intent intent = new Intent();
+        intent.setClass(context, AssetsAddActivity.class);
+        context.startActivity(intent);
+        /*((BaseActivity)context).startActivityForResult(intent,1);*/
     }
 }
