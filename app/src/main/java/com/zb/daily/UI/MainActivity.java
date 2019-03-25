@@ -24,6 +24,7 @@ import com.zb.daily.UI.fragment.IndexFragment;
 import com.zb.daily.adapter.AssetsMainListAdapter;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
+import com.zb.daily.util.ActivityManager;
 import org.litepal.tablemanager.Connector;
 
 import java.util.List;
@@ -156,9 +157,15 @@ public class MainActivity extends BaseActivity {
             mExitTime = System.currentTimeMillis();
         } else {
             //小于2000ms则认为是用户确实希望退出程序-调用System.exit()方法进行退出
-            Intent intent = new Intent(Intent.ACTION_MAIN);
+
+            //程序完全退出
+            ActivityManager.finishAll();
+            android.os.Process.killProcess(android.os.Process.myPid());
+
+            //返回桌面，后台不退出
+            /*Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
-            startActivity(intent);
+            startActivity(intent);*/
         }
     }
 

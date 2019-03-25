@@ -86,7 +86,7 @@ public class AssetsTransferActivity extends BaseActivity {
         });
 
         //保存
-        preButton.setOnClickListener(new View.OnClickListener() {
+        saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
