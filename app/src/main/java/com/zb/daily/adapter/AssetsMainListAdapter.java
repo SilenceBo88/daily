@@ -72,7 +72,7 @@ public class AssetsMainListAdapter extends RecyclerView.Adapter<AssetsMainListAd
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Assets assets = mAssetsList.get(position);
-                AssetsDetailActivity.actionStart(mContext, assets);
+                AssetsDetailActivity.actionStart(mContext, assets, position);
             }
         });
 
@@ -103,6 +103,7 @@ public class AssetsMainListAdapter extends RecyclerView.Adapter<AssetsMainListAd
         holder.assetsName.setText(assets.getName());
         holder.assetsBalance.setText(assets.getBalance().toString());
         if (!assets.getRemark().isEmpty()){
+            holder.assetsRemark.setVisibility(View.VISIBLE);
             holder.assetsRemark.setText(assets.getRemark());
         }else {
             holder.assetsRemark.setVisibility(View.GONE);

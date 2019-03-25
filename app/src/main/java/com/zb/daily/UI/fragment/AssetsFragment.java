@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import com.alibaba.fastjson.JSON;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.AssetsAddActivity;
@@ -30,6 +31,8 @@ import com.zb.daily.model.Assets;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * @auther: zb
@@ -58,6 +61,17 @@ public class AssetsFragment extends Fragment implements StartDragListener {
     private ItemTouchHelper itemtouchhelper;
     //触摸事件帮助类
     private ItemTouchHelper itemtouchhelper2;
+
+    static AssetsMainListAdapter assetsAdapter = null;
+    static AssetsMainListAdapter liabilityAdapter = null;
+
+    public static RecyclerView.Adapter getAssetsAdapter() {
+        return assetsAdapter;
+    }
+
+    public static RecyclerView.Adapter getLiabilityAdapter() {
+        return liabilityAdapter;
+    }
 
     @Nullable
     @Override
@@ -115,14 +129,14 @@ public class AssetsFragment extends Fragment implements StartDragListener {
         RecyclerView assetsRecyclerView = activity.findViewById(R.id.fragment_assets_assetsRecyclerView);
         LinearLayoutManager assetsLayoutManager = new LinearLayoutManager(MyApplication.getContext());
         assetsRecyclerView.setLayoutManager(assetsLayoutManager);
-        AssetsMainListAdapter assetsAdapter = new AssetsMainListAdapter(assetsList, this);
+        assetsAdapter = new AssetsMainListAdapter(assetsList, this);
         assetsRecyclerView.setAdapter(assetsAdapter);
 
         //负债账户的list适配
         RecyclerView liabilityRecyclerView = activity.findViewById(R.id.fragment_assets_liabilityRecyclerView);
         LinearLayoutManager liabilityLayoutManager = new LinearLayoutManager(MyApplication.getContext());
         liabilityRecyclerView.setLayoutManager(liabilityLayoutManager);
-        AssetsMainListAdapter liabilityAdapter = new AssetsMainListAdapter(liabilityList, this);
+        liabilityAdapter = new AssetsMainListAdapter(liabilityList, this);
         liabilityRecyclerView.setAdapter(liabilityAdapter);
 
         //资产账户RecyclerView 注册item触摸事件，来实现长按交换item数据

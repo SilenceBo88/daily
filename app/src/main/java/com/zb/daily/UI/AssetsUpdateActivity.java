@@ -66,7 +66,7 @@ public class AssetsUpdateActivity extends BaseActivity {
         updatePreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AssetsUpdateActivity.this.finish();
+                finish();
             }
         });
 
@@ -103,7 +103,10 @@ public class AssetsUpdateActivity extends BaseActivity {
                 if (assetsDao.updateAssets(temp)){
                     //修改成功，返回资产详情页面
                     ToastUtils.show("修改成功");
-                    AssetsDetailActivity.actionStart(AssetsUpdateActivity.this, temp);
+                    Intent intent = new Intent();
+                    intent.putExtra("assets_update_return", JSONObject.toJSONString(temp));
+                    setResult(RESULT_OK, intent);
+                    finish();
                 }
             }
         });
@@ -114,7 +117,7 @@ public class AssetsUpdateActivity extends BaseActivity {
         Intent intent = new Intent();
         intent.setClass(context, AssetsUpdateActivity.class);
         intent.putExtra("assets", JSONObject.toJSONString(assets));
-        context.startActivity(intent);
-        /*((BaseActivity)context).startActivityForResult(intent,1);*/
+        /*context.startActivity(intent);*/
+        ((BaseActivity)context).startActivityForResult(intent, 1);
     }
 }

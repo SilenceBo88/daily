@@ -3,10 +3,12 @@ package com.zb.daily.UI;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,6 +48,8 @@ public class AssetsDetailActivity extends BaseActivity {
     private AssetsDao assetsDao = new AssetsDao();
     private Assets assets;
 
+    private int position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,33 +69,53 @@ public class AssetsDetailActivity extends BaseActivity {
 
         //获取活动传递的数据
         String jsonString = getIntent().getStringExtra("assets");
+        position = getIntent().getIntExtra("position", -1);
         assets = JSON.parseObject(jsonString, Assets.class);
-        assetsDetailImage.setImageResource(assets.getImageId());
-        assetsDetailName.setText(assets.getName());
-        assetsDetailRemark.setText(assets.getRemark());
-        assetsDetailBalance.setText(assets.getBalance().toString());
-        if (assets.getRemark().isEmpty()){
-            assetsDetailLine.setVisibility(View.GONE);
-        }
+        setValue(assets);
 
         //返回上一个活动
         assetsDetailPreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.actionStart(AssetsDetailActivity.this, Constant.TO_ASSETS_FRAGMENT);
+                backActivity();
             }
         });
 
         //todo 资产变动情况列表
     }
 
+    //设置控件的值
+    private void setValue(Assets assets){
+        assetsDetailImage.setImageResource(assets.getImageId());
+        assetsDetailName.setText(assets.getName());
+        assetsDetailRemark.setText(assets.getRemark());
+        assetsDetailBalance.setText(assets.getBalance().toString());
+        if (assets.getRemark().isEmpty()){
+            assetsDetailLine.setVisibility(View.GONE);
+        }else {
+            assetsDetailLine.setVisibility(View.VISIBLE);
+        }
+    }
+
     //重写系统返回按钮
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
-            MainActivity.actionStart(AssetsDetailActivity.this, Constant.TO_ASSETS_FRAGMENT);
+    public void onBackPressed() {
+        backActivity();
+    }
+
+    //返回到本活动时更新数据
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode){
+            case 1:
+                if (resultCode == RESULT_OK){
+                    String returnData = data.getStringExtra("assets_update_return");
+                    assets = JSON.parseObject(returnData, Assets.class);
+                    setValue(assets);
+                }
+                break;
+            default:
         }
-        return true;
     }
 
     //创建菜单
@@ -145,12 +169,22 @@ public class AssetsDetailActivity extends BaseActivity {
         normalDialog.show();
     }
 
+    //返回上一个活动
+    private void backActivity() {
+        Intent intent = new Intent();
+        intent.putExtra("assets_detail_return", JSONObject.toJSONString(assets));
+        intent.putExtra("position_detail_return", position);
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
     //启动本活动
-    public static void actionStart(Context context, Assets assets){
+    public static void actionStart(Context context, Assets assets, int position){
         Intent intent = new Intent();
         intent.setClass(context, AssetsDetailActivity.class);
         intent.putExtra("assets", JSONObject.toJSONString(assets));
-        context.startActivity(intent);
-        /*((BaseActivity)context).startActivityForResult(intent,1);*/
+        intent.putExtra("position", position);
+        /*context.startActivity(intent);*/
+        ((BaseActivity)context).startActivityForResult(intent,1001);
     }
 }

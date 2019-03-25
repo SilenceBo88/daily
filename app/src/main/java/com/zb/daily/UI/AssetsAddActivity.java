@@ -46,7 +46,7 @@ public class AssetsAddActivity extends BaseActivity {
         addPreButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AssetsAddActivity.this.finish();
+                finish();
             }
         });
 

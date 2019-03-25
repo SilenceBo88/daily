@@ -4,15 +4,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.*;
 import com.zb.daily.BaseActivity;
-import com.zb.daily.Constant;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.adapter.AssetsDialogAdapter;
@@ -84,21 +81,24 @@ public class AssetsTransferActivity extends BaseActivity {
         preButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.actionStart(AssetsTransferActivity.this, Constant.TO_ASSETS_FRAGMENT);
+                finish();
+            }
+        });
+
+        //保存
+        preButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                setResult(RESULT_OK, intent);
+                finish();
             }
         });
 
         assetsList = assetsDao.findAssetsList();
         listAdapter = new AssetsDialogAdapter(MyApplication.getContext(), assetsList);
-    }
 
-    //重写系统返回按钮
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode==KeyEvent.KEYCODE_BACK){
-            MainActivity.actionStart(AssetsTransferActivity.this, Constant.TO_ASSETS_FRAGMENT);
-        }
-        return true;
+        //todo 转账功能完善
     }
 
     //转出账户弹出框
@@ -172,7 +172,7 @@ public class AssetsTransferActivity extends BaseActivity {
     public static void actionStart(Context context){
         Intent intent = new Intent();
         intent.setClass(context, AssetsTransferActivity.class);
-        context.startActivity(intent);
-        /*((BaseActivity)context).startActivityForResult(intent,1);*/
+        /*context.startActivity(intent);*/
+        ((BaseActivity)context).startActivityForResult(intent,1002);
     }
 }
