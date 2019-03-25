@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--资产管理页面-->
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--使用AppBarLayout布局解决遮挡Toobar的问题-->
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <!--新的标题栏-->
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/fragment_category_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:titleTextColor="@color/color_white"
+                app:layout_collapseMode="pin">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <Button
+                        android:id="@+id/fragment_category_btn_menu"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentLeft="true"
+                        android:background="@drawable/ic_menu"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_white"
+                        android:textSize="18sp"
+                        android:layout_centerHorizontal="true"
+                        android:text="分类管理"/>
+
+                <Button
+                        android:id="@+id/fragment_category_btn_add"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/ic_add"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <!--标题栏下方的内容区域-->
+    <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="20sp"
+                    android:text="支出"
+                    android:textColor="@color/color_gray"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fragment_category_outRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textSize="20sp"
+                    android:text="收入"
+                    android:textColor="@color/color_gray"/>
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fragment_category_inRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

@@ -15,4 +15,12 @@ public interface ItemTouchHelperAdapterCallback {
      * @return
      */
     boolean onItemMove(int fromPosition, int toPosition);
+
+    /**
+     * 拖拽滑动，删除item
+     *
+     * @param position
+     * @return
+     */
+    void onItemDelete(int position);
 }

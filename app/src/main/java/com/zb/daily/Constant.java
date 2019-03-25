@@ -16,4 +16,5 @@ public class Constant {
     public static final int TO_INDEX_FRAGMENT = 1;
     public static final int TO_CHART_FRAGMENT = 2;
     public static final int TO_ASSETS_FRAGMENT = 3;
+    public static final int TO_CATEGORY_FRAGMENT = 4;
 }

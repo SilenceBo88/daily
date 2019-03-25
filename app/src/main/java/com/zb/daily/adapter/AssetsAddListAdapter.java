@@ -1,8 +1,6 @@
 package com.zb.daily.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
 import com.zb.daily.R;
 import com.zb.daily.UI.AssetsNewActivity;
@@ -41,8 +38,8 @@ public class AssetsAddListAdapter extends RecyclerView.Adapter<AssetsAddListAdap
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
-            assetsImage = view.findViewById( R.id.item_assets_addList_image);
-            assetsName = view.findViewById(R.id.item_assets_addList_name);
+            assetsImage = view.findViewById( R.id.item_assets_add_list_image);
+            assetsName = view.findViewById(R.id.item_assets_add_list_name);
         }
     }
 

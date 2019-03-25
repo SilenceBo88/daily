@@ -15,14 +15,14 @@
             android:orientation="horizontal">
 
         <ImageView
-                android:id="@+id/item_assets_add_list_image"
+                android:id="@+id/item_category_main_list_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
                 android:src="@drawable/assets_cash"/>
 
         <TextView
-                android:id="@+id/item_assets_add_list_name"
+                android:id="@+id/item_category_main_list_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"

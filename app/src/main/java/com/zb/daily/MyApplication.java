@@ -35,6 +35,8 @@ public class MyApplication extends Application {
         if (!data_init){
             //初始化资产和负债列表
             DBInit.assetsInit();
+            //初始化分类列表
+            DBInit.categoryInit();
             //设置数据已经初始化
             SPUtil.put(context, Constant.TEXT_DATA_INIT, true);
         }

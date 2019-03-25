@@ -12,7 +12,7 @@ import android.widget.*;
 import com.zb.daily.BaseActivity;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
-import com.zb.daily.adapter.AssetsDialogAdapter;
+import com.zb.daily.adapter.AssetsTransferDialogAdapter;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
 
@@ -40,7 +40,7 @@ public class AssetsTransferActivity extends BaseActivity {
     private TextView inTextView;
     private TextView dateTextView;
     //资产弹出框
-    private AssetsDialogAdapter listAdapter;
+    private AssetsTransferDialogAdapter listAdapter;
     private AssetsDao assetsDao = new AssetsDao();
     private List<Assets> assetsList;
 
@@ -96,7 +96,7 @@ public class AssetsTransferActivity extends BaseActivity {
         });
 
         assetsList = assetsDao.findAssetsList();
-        listAdapter = new AssetsDialogAdapter(MyApplication.getContext(), assetsList);
+        listAdapter = new AssetsTransferDialogAdapter(MyApplication.getContext(), assetsList);
 
         //todo 转账功能完善
     }
@@ -173,6 +173,6 @@ public class AssetsTransferActivity extends BaseActivity {
         Intent intent = new Intent();
         intent.setClass(context, AssetsTransferActivity.class);
         /*context.startActivity(intent);*/
-        ((BaseActivity)context).startActivityForResult(intent,1002);
+        ((BaseActivity)context).startActivityForResult(intent,3002);
     }
 }

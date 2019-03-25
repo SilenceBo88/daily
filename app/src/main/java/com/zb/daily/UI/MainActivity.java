@@ -8,10 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import com.alibaba.fastjson.JSON;
 import com.hjq.toast.ToastUtils;
@@ -19,6 +16,7 @@ import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
 import com.zb.daily.R;
 import com.zb.daily.UI.fragment.AssetsFragment;
+import com.zb.daily.UI.fragment.CategoryFragment;
 import com.zb.daily.UI.fragment.ChartFragment;
 import com.zb.daily.UI.fragment.IndexFragment;
 import com.zb.daily.adapter.AssetsMainListAdapter;
@@ -70,6 +68,10 @@ public class MainActivity extends BaseActivity {
                 navigationView.setCheckedItem(R.id.nav_assets);
                 replaceFragment(new AssetsFragment());
                 break;
+            case Constant.TO_CATEGORY_FRAGMENT:
+                navigationView.setCheckedItem(R.id.nav_category);
+                replaceFragment(new CategoryFragment());
+                break;
         }
 
         //处理点击菜单项产生的事件
@@ -86,6 +88,9 @@ public class MainActivity extends BaseActivity {
                     case R.id.nav_assets:
                         replaceFragment(new AssetsFragment());
                         break;
+                    case R.id.nav_category:
+                        replaceFragment(new CategoryFragment());
+                        break;
                 }
                 menuItem.setCheckable(true);//选项可选
                 menuItem.setChecked(true);//选项被选中
@@ -98,7 +103,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
-            case 1001:
+            case 3001:
                 //资产详情页面返回局部刷新item
                 if (resultCode == RESULT_OK){
                     String returnData = data.getStringExtra("assets_detail_return");
@@ -116,7 +121,7 @@ public class MainActivity extends BaseActivity {
                     }
                 }
                 break;
-            case 1002:
+            case 3002:
                 //资产转账页面返回全局刷新item
                 if (resultCode == RESULT_OK){
                     List<Assets> assetsList = assetsDao.findAssetsListByType(1);

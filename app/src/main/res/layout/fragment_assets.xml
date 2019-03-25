@@ -150,7 +150,7 @@
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/fragment_assets_assetsRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="wrap_content"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -164,7 +164,7 @@
             <android.support.v7.widget.RecyclerView
                     android:id="@+id/fragment_assets_liabilityRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="wrap_content"/>
 
         </LinearLayout>
 

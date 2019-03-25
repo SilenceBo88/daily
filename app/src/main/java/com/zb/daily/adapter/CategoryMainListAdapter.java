@@ -1,6 +1,8 @@
 package com.zb.daily.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,49 +12,51 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.hjq.toast.ToastUtils;
+import com.zb.daily.Constant;
+import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.AssetsDetailActivity;
+import com.zb.daily.UI.MainActivity;
 import com.zb.daily.UI.helper.ItemTouchHelperAdapterCallback;
 import com.zb.daily.UI.helper.StartDragListener;
-import com.zb.daily.dao.AssetsDao;
+import com.zb.daily.dao.CategoryDao;
 import com.zb.daily.model.Assets;
+import com.zb.daily.model.Category;
 
 import java.util.Collections;
 import java.util.List;
 
 /**
  * @auther: zb
- * @Date: 2019/2/22 18:01
- * @Description: 资产管理页面的list适配器
+ * @Date: 2019/3/25 18:01
+ * @Description: 分类管理页面的list适配器
  */
-public class AssetsMainListAdapter extends RecyclerView.Adapter<AssetsMainListAdapter.ViewHolder> implements ItemTouchHelperAdapterCallback {
+public class CategoryMainListAdapter extends RecyclerView.Adapter<CategoryMainListAdapter.ViewHolder> implements ItemTouchHelperAdapterCallback {
 
     private Context mContext;
-    private List<Assets> mAssetsList;
+    private List<Category> mCategoryList;
     //用来实现长按交换item顺序
     private StartDragListener startDragListener;
-    private AssetsDao assetsDao = new AssetsDao();
+    private CategoryDao categoryDao = new CategoryDao();
 
-    public AssetsMainListAdapter(List<Assets> assetsList, StartDragListener startDragListener) {
-        mAssetsList = assetsList;
+    public CategoryMainListAdapter(List<Category> categoryList, StartDragListener startDragListener) {
+        mCategoryList = categoryList;
         this.startDragListener = startDragListener;
     }
 
     //初始化item中的属性
     static class ViewHolder extends RecyclerView.ViewHolder {
         CardView cardView;
-        ImageView assetsImage;
-        TextView assetsName;
-        TextView assetsBalance;
-        TextView assetsRemark;
+        ImageView categoryImage;
+        TextView categoryName;
+
 
         public ViewHolder(View view) {
             super(view);
             cardView = (CardView) view;
-            assetsImage = view.findViewById( R.id.item_assets_main_list_image);
-            assetsName = view.findViewById(R.id.item_assets_main_list_name);
-            assetsBalance = view.findViewById(R.id.item_assets_main_list_balance);
-            assetsRemark = view.findViewById(R.id.item_assets_main_list_remark);
+            categoryImage = view.findViewById( R.id.item_category_main_list_image);
+            categoryName = view.findViewById(R.id.item_category_main_list_name);
         }
     }
 
@@ -62,16 +66,15 @@ public class AssetsMainListAdapter extends RecyclerView.Adapter<AssetsMainListAd
             mContext = parent.getContext();
         }
 
-        final View view = LayoutInflater.from(mContext).inflate(R.layout.item_assets_main_list, parent, false);
+        final View view = LayoutInflater.from(mContext).inflate(R.layout.item_category_main_list, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
         //list中的每个item的点击事件，打开资产详情页面
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = holder.getAdapterPosition();
-                Assets assets = mAssetsList.get(position);
-                AssetsDetailActivity.actionStart(mContext, assets, position);
+                /*int position = holder.getAdapterPosition();
+                Category category = mCategoryList.get(position);*/
             }
         });
 
@@ -98,42 +101,43 @@ public class AssetsMainListAdapter extends RecyclerView.Adapter<AssetsMainListAd
     //绑定数据到item
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        Assets assets = mAssetsList.get(position);
-        holder.assetsName.setText(assets.getName());
-        holder.assetsBalance.setText(assets.getBalance().toString());
-        if (!assets.getRemark().isEmpty()){
-            holder.assetsRemark.setVisibility(View.VISIBLE);
-            holder.assetsRemark.setText(assets.getRemark());
-        }else {
-            holder.assetsRemark.setVisibility(View.GONE);
-        }
-        Glide.with(mContext).load(assets.getImageId()).into(holder.assetsImage);
+        Category category = mCategoryList.get(position);
+        holder.categoryName.setText(category.getName());
+        Glide.with(mContext).load(category.getImageId()).into(holder.categoryImage);
     }
 
     //获取item数量
     @Override
     public int getItemCount() {
-        return mAssetsList.size();
+        return mCategoryList.size();
     }
 
     //接口回调的方法,来执行移动之后的操作（实现长按交换item顺序）
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
         //数据发生改变  两个数据交换位置
-        Collections.swap(mAssetsList, fromPosition, toPosition);
+        Collections.swap(mCategoryList, fromPosition, toPosition);
         //刷新数据
         notifyItemMoved(fromPosition, toPosition);
-        //替换旧的资产列表
-        assetsDao.replaceOldList(mAssetsList);
+        //替换旧的分类列表
+        categoryDao.replaceOldList(mCategoryList);
         return true;
     }
 
     @Override
     public void onItemDelete(int position) {
+        //移除数据
+        Category category = mCategoryList.get(position);
+        mCategoryList.remove(position);
+        notifyItemRemoved(position);
+        if (categoryDao.deleteCategory(category.getId())){
+            ToastUtils.show("删除成功");
+        }
     }
 
     //获取资产列表
-    public List<Assets> getAssetsList(){
-        return mAssetsList;
+    public List<Category> getCategoryList(){
+        return mCategoryList;
     }
+
 }

@@ -5,6 +5,7 @@ import com.zb.daily.Constant;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.model.Assets;
+import com.zb.daily.model.Category;
 import com.zb.daily.util.SPUtil;
 
 import java.util.ArrayList;
@@ -54,5 +55,43 @@ public class DBInit {
         //另一份以json格式保存到SharedPreference中，在添加资产页面初始化list时使用
         String jsonString = JSONArray.toJSONString(assetsList);
         SPUtil.put(MyApplication.getContext(), Constant.TEXT_ASSETS_ADD_LIST, jsonString);
+    }
+
+    //资产数据初始化
+    public static void categoryInit(){
+        CategoryDao categoryDao = new CategoryDao();
+
+        //分类集合
+        List<Category> categoryList = new ArrayList<>();
+
+        Category outCategory1 = new Category(R.drawable.assets_flower, "餐饮", 1);
+        Category outCategory2 = new Category(R.drawable.assets_flower, "日用", 1);
+        Category outCategory3 = new Category(R.drawable.assets_flower, "衣服", 1);
+        Category outCategory4 = new Category(R.drawable.assets_flower, "医疗", 1);
+        Category outCategory5 = new Category(R.drawable.assets_flower, "零食", 1);
+        Category outCategory6 = new Category(R.drawable.assets_flower, "礼物", 1);
+        Category outCategory7 = new Category(R.drawable.assets_flower, "交通", 1);
+        Category outCategory8 = new Category(R.drawable.assets_flower, "电子产品", 1);
+
+        Category inCategory1 = new Category(R.drawable.assets_flower, "薪资", 2);
+        Category inCategory2 = new Category(R.drawable.assets_flower, "兼职", 2);
+        Category inCategory3 = new Category(R.drawable.assets_flower, "投资", 2);
+        Category inCategory4 = new Category(R.drawable.assets_flower, "生活费", 2);
+
+        categoryList.add(outCategory1);
+        categoryList.add(outCategory2);
+        categoryList.add(outCategory3);
+        categoryList.add(outCategory4);
+        categoryList.add(outCategory5);
+        categoryList.add(outCategory6);
+        categoryList.add(outCategory7);
+        categoryList.add(outCategory8);
+        categoryList.add(inCategory1);
+        categoryList.add(inCategory2);
+        categoryList.add(inCategory3);
+        categoryList.add(inCategory4);
+
+        //保存到数据库，以便正常crud
+        categoryDao.saveCategoryList(categoryList);
     }
 }

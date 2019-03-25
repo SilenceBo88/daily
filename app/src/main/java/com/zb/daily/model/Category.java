@@ -4,10 +4,10 @@ import org.litepal.crud.DataSupport;
 
 /**
  * @auther: zb
- * @Date: 2019/2/23 22:43
- * @Description: 资产实体类
+ * @Date: 2019/3/25 19:37
+ * @Description: 分类实体类
  */
-public class Assets extends DataSupport {
+public class Category extends DataSupport {
 
     private Integer id;
 
@@ -15,11 +15,7 @@ public class Assets extends DataSupport {
 
     private String name;//名称
 
-    private Double balance;//余额
-
-    private Integer type;//类型：1是资产，2是负债
-
-    private String remark;//备注
+    private Integer type;//类型：1是支出，2是收入
 
     public Integer getId() {
         return id;
@@ -45,14 +41,6 @@ public class Assets extends DataSupport {
         this.name = name;
     }
 
-    public Double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Double balance) {
-        this.balance = balance;
-    }
-
     public Integer getType() {
         return type;
     }
@@ -61,22 +49,12 @@ public class Assets extends DataSupport {
         this.type = type;
     }
 
-    public String getRemark() {
-        return remark;
+    public Category() {
     }
 
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
-    public Assets() {
-    }
-
-    public Assets(Integer imageId, String name, Double balance, Integer type, String remark) {
+    public Category(Integer imageId, String name, Integer type) {
         this.imageId = imageId;
         this.name = name;
-        this.balance = balance;
         this.type = type;
-        this.remark = remark;
     }
 }

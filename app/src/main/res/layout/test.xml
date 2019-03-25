@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--测试页面-->
-<RelativeLayout
+<LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <Button
-            android:id="@+id/assets_Detail_btn_pre"
-            android:layout_width="25dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="true"
-            android:background="@drawable/ic_pre"/>
+        android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_white"
-            android:textSize="18sp"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true"
-            android:text="资产详情"/>
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:text="支出"
+            android:textColor="@color/color_gray"/>
 
-</RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_category_outRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:textSize="20sp"
+            android:text="收入"
+            android:textColor="@color/color_gray"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_category_inRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

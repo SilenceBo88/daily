@@ -23,6 +23,7 @@ import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.AssetsAddActivity;
 import com.zb.daily.UI.AssetsTransferActivity;
+import com.zb.daily.UI.helper.AssetsMainItemTouchCallback;
 import com.zb.daily.UI.helper.MyItemTouchCallback;
 import com.zb.daily.UI.helper.StartDragListener;
 import com.zb.daily.adapter.AssetsMainListAdapter;
@@ -140,12 +141,12 @@ public class AssetsFragment extends Fragment implements StartDragListener {
         liabilityRecyclerView.setAdapter(liabilityAdapter);
 
         //资产账户RecyclerView 注册item触摸事件，来实现长按交换item数据
-        ItemTouchHelper.Callback callback = new MyItemTouchCallback(assetsAdapter);
+        ItemTouchHelper.Callback callback = new AssetsMainItemTouchCallback(assetsAdapter);
         itemtouchhelper = new ItemTouchHelper(callback);
         itemtouchhelper.attachToRecyclerView(assetsRecyclerView);
 
         //负债账户RecyclerView 注册item触摸事件，来实现长按交换item数据
-        ItemTouchHelper.Callback callback2 = new MyItemTouchCallback(liabilityAdapter);
+        ItemTouchHelper.Callback callback2 = new AssetsMainItemTouchCallback(liabilityAdapter);
         itemtouchhelper2 = new ItemTouchHelper(callback2);
         itemtouchhelper2.attachToRecyclerView(liabilityRecyclerView);
     }

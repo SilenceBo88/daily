@@ -55,6 +55,9 @@ public class AssetsDao {
 
     //替换旧的资产列表
     public void replaceOldList(List<Assets> assetsList) {
+        if (assetsList.size() == 0){
+            return;
+        }
         List<Assets> tempAssets = findAssetsListByType(assetsList.get(0).getType());
 
         for (int i=0; i<assetsList.size(); i++){

@@ -16,7 +16,7 @@
             android:orientation="horizontal">
 
         <ImageView
-                android:id="@+id/item_assets_mainList_image"
+                android:id="@+id/item_assets_main_list_image"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_margin="10dp"
@@ -29,7 +29,7 @@
                 android:layout_gravity="center_vertical">
 
             <TextView
-                    android:id="@+id/item_assets_mainList_name"
+                    android:id="@+id/item_assets_main_list_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -39,7 +39,7 @@
                     android:text="工资薪水"/>
 
             <TextView
-                    android:id="@+id/item_assets_mainList_remark"
+                    android:id="@+id/item_assets_main_list_remark"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -57,7 +57,7 @@
                 android:layout_gravity="center_vertical">
 
             <TextView
-                    android:id="@+id/item_assets_mainList_balance"
+                    android:id="@+id/item_assets_main_list_balance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"

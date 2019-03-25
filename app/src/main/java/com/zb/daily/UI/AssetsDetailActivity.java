@@ -185,6 +185,6 @@ public class AssetsDetailActivity extends BaseActivity {
         intent.putExtra("assets", JSONObject.toJSONString(assets));
         intent.putExtra("position", position);
         /*context.startActivity(intent);*/
-        ((BaseActivity)context).startActivityForResult(intent,1001);
+        ((BaseActivity)context).startActivityForResult(intent,3001);
     }
 }

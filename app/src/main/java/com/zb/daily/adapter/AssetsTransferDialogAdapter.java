@@ -18,13 +18,13 @@ import java.util.List;
  * @Date: 2019/3/24 10:48
  * @Description: 资产转账页面中弹出框的list适配器
  */
-public class AssetsDialogAdapter extends BaseAdapter {
+public class AssetsTransferDialogAdapter extends BaseAdapter {
 
     private List<Assets> assetsList;
     private LayoutInflater inflater;
     private Context mContext;
 
-    public AssetsDialogAdapter(Context context, List<Assets> list){
+    public AssetsTransferDialogAdapter(Context context, List<Assets> list){
         this.mContext = context;
         this.assetsList = list;
         inflater = LayoutInflater.from(mContext);
@@ -38,10 +38,10 @@ public class AssetsDialogAdapter extends BaseAdapter {
         TextView assetsRemark;
 
         public ViewHolder(View view) {
-            assetsImage = view.findViewById( R.id.item_assets_transfer_dialogList_image);
-            assetsName = view.findViewById(R.id.item_assets_transfer_dialogList_name);
-            assetsBalance = view.findViewById(R.id.item_assets_transfer_dialogList_balance);
-            assetsRemark = view.findViewById(R.id.item_assets_transfer_dialogList_remark);
+            assetsImage = view.findViewById( R.id.item_assets_transfer_dialog_list_image);
+            assetsName = view.findViewById(R.id.item_assets_transfer_dialog_list_name);
+            assetsBalance = view.findViewById(R.id.item_assets_transfer_dialog_list_balance);
+            assetsRemark = view.findViewById(R.id.item_assets_transfer_dialog_list_remark);
         }
     }
 

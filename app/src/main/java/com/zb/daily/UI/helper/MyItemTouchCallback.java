@@ -19,7 +19,6 @@ import java.util.List;
 public class MyItemTouchCallback extends ItemTouchHelper.Callback {
 
     private final ItemTouchHelperAdapterCallback itemTouchCallback;
-    private AssetsDao assetsDao = new AssetsDao();
 
     public MyItemTouchCallback(ItemTouchHelperAdapterCallback itemtouchcallback) {
         this.itemTouchCallback = itemtouchcallback;
@@ -29,12 +28,6 @@ public class MyItemTouchCallback extends ItemTouchHelper.Callback {
     @Override
     public boolean isLongPressDragEnabled() {//可以进行长按拖动
         return true;
-    }
-
-    //进行侧滑拖动
-    @Override
-    public boolean isItemViewSwipeEnabled() {
-        return false;
     }
 
     //最先调用，判断ITEM触摸拖动方向，如上下左右拖动；滑动方向SWIPE 左右滑动
@@ -59,7 +52,7 @@ public class MyItemTouchCallback extends ItemTouchHelper.Callback {
     //swipe侧滑时调用adapter里的onItemRemove函数实现item删除
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-
+        itemTouchCallback.onItemDelete(viewHolder.getAdapterPosition());
     }
 
     //拖动时ITEM背景色
@@ -72,13 +65,10 @@ public class MyItemTouchCallback extends ItemTouchHelper.Callback {
         super.onSelectedChanged(viewHolder, actionState);
     }
 
-    //交换数据后停止拖动，背景色恢复为白色，并在此把交换后的数据保存到数据库
+    //交换数据后停止拖动，背景色恢复为白色
     @Override
     public void clearView(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
         viewHolder.itemView.setBackgroundColor(Color.WHITE);
-        List<Assets> assetsList = ((AssetsMainListAdapter) recyclerView.getAdapter()).getAssetsList();
-        //替换旧的资产列表
-        assetsDao.replaceOldList(assetsList);
         super.clearView(recyclerView, viewHolder);
     }
 
