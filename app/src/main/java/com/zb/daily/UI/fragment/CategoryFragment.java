@@ -3,7 +3,6 @@ package com.zb.daily.UI.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
@@ -19,16 +18,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
-import com.zb.daily.UI.AssetsAddActivity;
-import com.zb.daily.UI.AssetsTransferActivity;
-import com.zb.daily.UI.helper.CategoryMainItemTouchCallback;
 import com.zb.daily.UI.helper.MyItemTouchCallback;
 import com.zb.daily.UI.helper.StartDragListener;
-import com.zb.daily.adapter.AssetsMainListAdapter;
 import com.zb.daily.adapter.CategoryMainListAdapter;
-import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.dao.CategoryDao;
-import com.zb.daily.model.Assets;
 import com.zb.daily.model.Category;
 
 import java.util.ArrayList;
@@ -129,12 +122,12 @@ public class CategoryFragment extends Fragment implements StartDragListener {
         inRecyclerView.setAdapter(inAdapter);
 
         //支出RecyclerView 注册item触摸事件，来实现长按交换item数据
-        ItemTouchHelper.Callback callback = new CategoryMainItemTouchCallback(outAdapter);
+        ItemTouchHelper.Callback callback = new MyItemTouchCallback(outAdapter);
         itemtouchhelper = new ItemTouchHelper(callback);
         itemtouchhelper.attachToRecyclerView(outRecyclerView);
 
         //收入RecyclerView 注册item触摸事件，来实现长按交换item数据
-        ItemTouchHelper.Callback callback2 = new CategoryMainItemTouchCallback(inAdapter);
+        ItemTouchHelper.Callback callback2 = new MyItemTouchCallback(inAdapter);
         itemtouchhelper2 = new ItemTouchHelper(callback2);
         itemtouchhelper2.attachToRecyclerView(inRecyclerView);
     }

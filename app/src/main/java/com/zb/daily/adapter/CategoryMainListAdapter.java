@@ -39,6 +39,7 @@ public class CategoryMainListAdapter extends RecyclerView.Adapter<CategoryMainLi
     //用来实现长按交换item顺序
     private StartDragListener startDragListener;
     private CategoryDao categoryDao = new CategoryDao();
+    private int clickPosition = -1;
 
     public CategoryMainListAdapter(List<Category> categoryList, StartDragListener startDragListener) {
         mCategoryList = categoryList;
@@ -73,8 +74,8 @@ public class CategoryMainListAdapter extends RecyclerView.Adapter<CategoryMainLi
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*int position = holder.getAdapterPosition();
-                Category category = mCategoryList.get(position);*/
+                clickPosition = holder.getAdapterPosition();
+                showListDialog();
             }
         });
 
@@ -126,13 +127,6 @@ public class CategoryMainListAdapter extends RecyclerView.Adapter<CategoryMainLi
 
     @Override
     public void onItemDelete(int position) {
-        //移除数据
-        Category category = mCategoryList.get(position);
-        mCategoryList.remove(position);
-        notifyItemRemoved(position);
-        if (categoryDao.deleteCategory(category.getId())){
-            ToastUtils.show("删除成功");
-        }
     }
 
     //获取资产列表
@@ -140,4 +134,49 @@ public class CategoryMainListAdapter extends RecyclerView.Adapter<CategoryMainLi
         return mCategoryList;
     }
 
+    private void showListDialog() {
+        final String[] items = { "修改","删除"};
+        AlertDialog.Builder listDialog =
+                new AlertDialog.Builder(mContext);
+        listDialog.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0){
+                    ToastUtils.show("你点击了" + items[which]);
+                }
+                if (which == 1){
+                    showDeleteCategoryDialog();
+                }
+            }
+        });
+        listDialog.show();
+    }
+
+    //删除资产确定框
+    private void showDeleteCategoryDialog(){
+        final AlertDialog.Builder normalDialog = new AlertDialog.Builder(mContext);
+        normalDialog.setTitle("删除分类");
+        normalDialog.setMessage("确定要删除该分类么，不会删除该分类下的已有收支记录");
+        normalDialog.setPositiveButton("确定",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Category category = mCategoryList.get(clickPosition);
+                        mCategoryList.remove(clickPosition);
+                        notifyItemRemoved(clickPosition);
+                        if (categoryDao.deleteCategory(category.getId())){
+                            ToastUtils.show("删除成功");
+                        }
+                    }
+                });
+        normalDialog.setNegativeButton("取消",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        // 显示
+        normalDialog.show();
+    }
 }

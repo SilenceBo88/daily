@@ -30,6 +30,12 @@ public class MyItemTouchCallback extends ItemTouchHelper.Callback {
         return true;
     }
 
+    //进行侧滑拖动
+    @Override
+    public boolean isItemViewSwipeEnabled() {
+        return false;
+    }
+
     //最先调用，判断ITEM触摸拖动方向，如上下左右拖动；滑动方向SWIPE 左右滑动
     @Override
     public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {

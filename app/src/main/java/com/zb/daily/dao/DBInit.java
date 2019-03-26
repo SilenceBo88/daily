@@ -64,19 +64,19 @@ public class DBInit {
         //分类集合
         List<Category> categoryList = new ArrayList<>();
 
-        Category outCategory1 = new Category(R.drawable.assets_flower, "餐饮", 1);
-        Category outCategory2 = new Category(R.drawable.assets_flower, "日用", 1);
-        Category outCategory3 = new Category(R.drawable.assets_flower, "衣服", 1);
-        Category outCategory4 = new Category(R.drawable.assets_flower, "医疗", 1);
-        Category outCategory5 = new Category(R.drawable.assets_flower, "零食", 1);
-        Category outCategory6 = new Category(R.drawable.assets_flower, "礼物", 1);
-        Category outCategory7 = new Category(R.drawable.assets_flower, "交通", 1);
-        Category outCategory8 = new Category(R.drawable.assets_flower, "电子产品", 1);
+        Category outCategory1 = new Category(R.drawable.category_food, "餐饮", 1);
+        Category outCategory2 = new Category(R.drawable.category_dailyuse, "日用", 1);
+        Category outCategory3 = new Category(R.drawable.category_clothes, "衣服", 1);
+        Category outCategory4 = new Category(R.drawable.category_medical, "医疗", 1);
+        Category outCategory5 = new Category(R.drawable.category_snack, "零食", 1);
+        Category outCategory6 = new Category(R.drawable.category_gift, "礼物", 1);
+        Category outCategory7 = new Category(R.drawable.category_traffic, "交通", 1);
+        Category outCategory8 = new Category(R.drawable.category_electronic, "电子产品", 1);
 
-        Category inCategory1 = new Category(R.drawable.assets_flower, "薪资", 2);
-        Category inCategory2 = new Category(R.drawable.assets_flower, "兼职", 2);
-        Category inCategory3 = new Category(R.drawable.assets_flower, "投资", 2);
-        Category inCategory4 = new Category(R.drawable.assets_flower, "生活费", 2);
+        Category inCategory1 = new Category(R.drawable.category_salary, "薪资", 2);
+        Category inCategory2 = new Category(R.drawable.category_parttime, "兼职", 2);
+        Category inCategory3 = new Category(R.drawable.category_investment, "投资", 2);
+        Category inCategory4 = new Category(R.drawable.category_alimony, "生活费", 2);
 
         categoryList.add(outCategory1);
         categoryList.add(outCategory2);
@@ -93,5 +93,43 @@ public class DBInit {
 
         //保存到数据库，以便正常crud
         categoryDao.saveCategoryList(categoryList);
+
+
+        //图标集合
+        List<Integer> categoryImageList = new ArrayList<>();
+
+        int categoryImage1 = R.drawable.category_food;
+        int categoryImage2 = R.drawable.category_dailyuse;
+        int categoryImage3 = R.drawable.category_clothes;
+        int categoryImage4 = R.drawable.category_medical;
+        int categoryImage5 = R.drawable.category_snack;
+        int categoryImage6 = R.drawable.category_gift;
+        int categoryImage7 = R.drawable.category_traffic;
+        int categoryImage8 = R.drawable.category_electronic;
+        int categoryImage9 = R.drawable.category_default;
+        int categoryImage10 = R.drawable.category_salary;
+        int categoryImage11 = R.drawable.category_parttime;
+        int categoryImage12 = R.drawable.category_investment;
+        int categoryImage13 = R.drawable.category_alimony;
+        int categoryImage14 = R.drawable.category_default2;
+
+        categoryImageList.add(categoryImage1);
+        categoryImageList.add(categoryImage2);
+        categoryImageList.add(categoryImage3);
+        categoryImageList.add(categoryImage4);
+        categoryImageList.add(categoryImage5);
+        categoryImageList.add(categoryImage6);
+        categoryImageList.add(categoryImage7);
+        categoryImageList.add(categoryImage8);
+        categoryImageList.add(categoryImage9);
+        categoryImageList.add(categoryImage10);
+        categoryImageList.add(categoryImage11);
+        categoryImageList.add(categoryImage12);
+        categoryImageList.add(categoryImage13);
+        categoryImageList.add(categoryImage14);
+
+        //以json格式保存到SharedPreference中，在添加和修改分类页面时初始化图标列表时使用
+        String jsonString = JSONArray.toJSONString(categoryImageList);
+        SPUtil.put(MyApplication.getContext(), Constant.TEXT_CATEGORY_IMAGE_LIST, jsonString);
     }
 }
