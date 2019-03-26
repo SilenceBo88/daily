@@ -27,6 +27,10 @@
         </activity>
         <activity android:name=".UI.AssetsTransferActivity">
         </activity>
+        <activity android:name=".UI.CategoryAddActivity">
+        </activity>
+        <activity android:name=".UI.CategoryUpdateActivity">
+        </activity>
     </application>
 
 </manifest>

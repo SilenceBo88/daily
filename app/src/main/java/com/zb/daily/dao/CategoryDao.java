@@ -1,5 +1,6 @@
 package com.zb.daily.dao;
 
+import android.content.ContentValues;
 import com.zb.daily.model.Assets;
 import com.zb.daily.model.Category;
 import org.litepal.crud.DataSupport;
@@ -12,6 +13,11 @@ import java.util.List;
  * @Description: 数据库分类表的crud操作
  */
 public class CategoryDao {
+
+    //保存分类
+    public boolean saveCategory(Category temp) {
+        return temp.save();
+    }
 
     //保存分类集合
     public void saveCategoryList(List<Category> categoryList) {
@@ -41,8 +47,18 @@ public class CategoryDao {
         }
     }
 
+    public boolean updateCategory(Category temp) {
+        ContentValues values = new ContentValues();
+        values.put("imageId", temp.getImageId());
+        values.put("name", temp.getName());
+        values.put("type", temp.getType());
+
+        return DataSupport.update(Category.class, values, temp.getId()) == 1 ? true : false;
+    }
+
     //删除资产
     public boolean deleteCategory(Integer id) {
         return DataSupport.delete(Category.class, id) == 1 ? true : false;
     }
+
 }

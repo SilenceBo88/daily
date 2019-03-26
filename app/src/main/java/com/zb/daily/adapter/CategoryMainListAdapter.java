@@ -17,6 +17,7 @@ import com.zb.daily.Constant;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.AssetsDetailActivity;
+import com.zb.daily.UI.CategoryUpdateActivity;
 import com.zb.daily.UI.MainActivity;
 import com.zb.daily.UI.helper.ItemTouchHelperAdapterCallback;
 import com.zb.daily.UI.helper.StartDragListener;
@@ -142,9 +143,11 @@ public class CategoryMainListAdapter extends RecyclerView.Adapter<CategoryMainLi
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0){
-                    ToastUtils.show("你点击了" + items[which]);
+                    //打开修改分类页面
+                    CategoryUpdateActivity.actionStart(mContext, mCategoryList.get(clickPosition), clickPosition);
                 }
                 if (which == 1){
+                    //弹出删除确定框
                     showDeleteCategoryDialog();
                 }
             }

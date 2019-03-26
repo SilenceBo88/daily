@@ -20,8 +20,10 @@ import com.zb.daily.UI.fragment.CategoryFragment;
 import com.zb.daily.UI.fragment.ChartFragment;
 import com.zb.daily.UI.fragment.IndexFragment;
 import com.zb.daily.adapter.AssetsMainListAdapter;
+import com.zb.daily.adapter.CategoryMainListAdapter;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
+import com.zb.daily.model.Category;
 import com.zb.daily.util.ActivityManager;
 import org.litepal.tablemanager.Connector;
 
@@ -137,6 +139,41 @@ public class MainActivity extends BaseActivity {
 
                     assetsListAdapter.notifyDataSetChanged();
                     liabilityListAdapter.notifyDataSetChanged();
+                }
+                break;
+            case 4001:
+                //分类添加页面返回局部刷新item
+                if (resultCode == RESULT_OK){
+                    String returnData = data.getStringExtra("category_add_return");
+                    Category category = JSON.parseObject(returnData, Category.class);
+                    if (category.getType() == 1){
+                        CategoryMainListAdapter adapter = (CategoryMainListAdapter) CategoryFragment.getOutAdapter();
+                        adapter.getCategoryList().add(category);
+                        adapter.notifyItemInserted(adapter.getItemCount() + 1);
+                    }
+                    if (category.getType() == 2){
+                        CategoryMainListAdapter adapter = (CategoryMainListAdapter) CategoryFragment.getInAdapter();
+                        adapter.getCategoryList().add(category);
+                        adapter.notifyItemInserted(adapter.getItemCount() + 1);
+                    }
+                }
+                break;
+            case 4002:
+                //分类修改页面返回局部刷新item
+                if (resultCode == RESULT_OK){
+                    String returnData = data.getStringExtra("category_update_return");
+                    int position = data.getIntExtra("position_update_return", -1);
+                    Category category = JSON.parseObject(returnData, Category.class);
+                    if (category.getType() == 1){
+                        CategoryMainListAdapter adapter = (CategoryMainListAdapter) CategoryFragment.getOutAdapter();
+                        adapter.getCategoryList().set(position, category);
+                        adapter.notifyItemChanged(position);
+                    }
+                    if (category.getType() == 2){
+                        CategoryMainListAdapter adapter = (CategoryMainListAdapter) CategoryFragment.getInAdapter();
+                        adapter.getCategoryList().set(position,category);
+                        adapter.notifyItemChanged(position);
+                    }
                 }
                 break;
             default:

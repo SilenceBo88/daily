@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
+import com.zb.daily.UI.CategoryAddActivity;
 import com.zb.daily.UI.helper.MyItemTouchCallback;
 import com.zb.daily.UI.helper.StartDragListener;
 import com.zb.daily.adapter.CategoryMainListAdapter;
@@ -59,7 +60,6 @@ public class CategoryFragment extends Fragment implements StartDragListener {
     public static RecyclerView.Adapter getOutAdapter() {
         return outAdapter;
     }
-
     public static RecyclerView.Adapter getInAdapter() {
         return inAdapter;
     }
@@ -94,12 +94,12 @@ public class CategoryFragment extends Fragment implements StartDragListener {
             }
         });
 
-        //添加按钮点击事件，打开添加资产页面
+        //添加按钮点击事件，打开添加分类页面
         addButton = activity.findViewById(R.id.fragment_category_btn_add);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*AssetsAddActivity.actionStart(activity);*/
+                CategoryAddActivity.actionStart(activity);
             }
         });
 
