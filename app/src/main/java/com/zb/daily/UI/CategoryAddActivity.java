@@ -23,6 +23,11 @@ import com.zb.daily.util.SPUtil;
 
 import java.util.List;
 
+/**
+ * @auther: zb
+ * @Date: 2019/3/25 18:41
+ * @Description: 添加分类页面
+ */
 public class CategoryAddActivity extends BaseActivity {
 
     //返回按钮

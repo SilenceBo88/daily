@@ -23,6 +23,11 @@ import com.zb.daily.util.SPUtil;
 
 import java.util.List;
 
+/**
+ * @auther: zb
+ * @Date: 2019/3/26 13:29
+ * @Description: 修改分类页面
+ */
 public class CategoryUpdateActivity extends BaseActivity {
 
     //返回按钮

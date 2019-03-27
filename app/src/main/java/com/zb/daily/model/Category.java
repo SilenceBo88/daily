@@ -1,5 +1,6 @@
 package com.zb.daily.model;
 
+import org.litepal.annotation.Column;
 import org.litepal.crud.DataSupport;
 
 /**
@@ -9,6 +10,7 @@ import org.litepal.crud.DataSupport;
  */
 public class Category extends DataSupport {
 
+    @Column(unique = true)
     private Integer id;
 
     private Integer imageId;//图片id
