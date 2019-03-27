@@ -31,13 +31,6 @@
                         android:layout_alignParentLeft="true"
                         android:background="@drawable/ic_menu"/>
 
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/color_white"
-                        android:textSize="18sp"
-                        android:layout_centerHorizontal="true"
-                        android:text="资产管理"/>
 
                 <Button
                         android:id="@+id/fragment_assets_btn_add"
@@ -50,6 +43,42 @@
             </RelativeLayout>
 
         </android.support.v7.widget.Toolbar>
+
+        <!--净资产布局-->
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="净资产(¥)"
+                        android:textColor="@color/color_white"
+                        android:textSize="18sp"/>
+
+                <TextView
+                        android:id="@+id/tv_all_assets"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="0"
+                        android:textColor="@color/color_white"
+                        android:textSize="26sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <!--资产负债布局-->
         <LinearLayout

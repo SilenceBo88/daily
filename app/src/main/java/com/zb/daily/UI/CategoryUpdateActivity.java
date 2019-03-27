@@ -23,7 +23,7 @@ import com.zb.daily.util.SPUtil;
 
 import java.util.List;
 
-public class CategoryUpdateActivity extends AppCompatActivity {
+public class CategoryUpdateActivity extends BaseActivity {
 
     //返回按钮
     private Button categoryUpdatePreButton;
