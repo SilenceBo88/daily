@@ -47,18 +47,19 @@ public class CategoryDao {
         }
     }
 
+    //修改分类
     public boolean updateCategory(Category temp) {
         ContentValues values = new ContentValues();
         values.put("imageId", temp.getImageId());
         values.put("name", temp.getName());
         values.put("type", temp.getType());
 
-        return DataSupport.update(Category.class, values, temp.getId()) == 1 ? true : false;
+        return DataSupport.update(Category.class, values, temp.getId()) == 1;
     }
 
     //删除资产
     public boolean deleteCategory(Integer id) {
-        return DataSupport.delete(Category.class, id) == 1 ? true : false;
+        return DataSupport.delete(Category.class, id) == 1;
     }
 
 }

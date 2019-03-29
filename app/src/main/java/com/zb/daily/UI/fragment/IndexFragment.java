@@ -9,11 +9,20 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.Button;
 import android.widget.Toast;
+import com.zb.daily.MyApplication;
 import com.zb.daily.R;
+import com.zb.daily.adapter.RecordMainListAdapter;
+import com.zb.daily.dao.RecordDao;
+import com.zb.daily.model.Record;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @auther: zb
@@ -30,6 +39,10 @@ public class IndexFragment extends Fragment {
     private DrawerLayout drawerLayout;
     //菜单按钮
     private Button menuButton;
+    private List<Record> recordList = new ArrayList<>();
+    private RecordDao recordDao = new RecordDao();
+
+    static RecordMainListAdapter adapter = null;
 
     @Nullable
     @Override
@@ -69,5 +82,14 @@ public class IndexFragment extends Fragment {
                 Toast.makeText(getContext(), "FABIndex clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
+        recordList = recordDao.findRecordList();
+
+        //支出的list适配
+        RecyclerView recyclerView = activity.findViewById(R.id.fragment_index_recordRecyclerView);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(MyApplication.getContext());
+        recyclerView.setLayoutManager(layoutManager);
+        adapter = new RecordMainListAdapter(recordList);
+        recyclerView.setAdapter(adapter);
     }
 }

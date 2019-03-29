@@ -50,7 +50,7 @@ public class AssetsDao {
         values.put("type", temp.getType());
         values.put("remark", temp.getRemark());
 
-        return DataSupport.update(Assets.class, values, temp.getId()) == 1 ? true : false;
+        return DataSupport.update(Assets.class, values, temp.getId()) == 1;
     }
 
     //替换旧的资产列表
@@ -74,7 +74,7 @@ public class AssetsDao {
 
     //删除资产
     public boolean deleteAssets(Integer id) {
-        return DataSupport.delete(Assets.class, id) == 1 ? true : false;
+        return DataSupport.delete(Assets.class, id) == 1;
     }
 
 }

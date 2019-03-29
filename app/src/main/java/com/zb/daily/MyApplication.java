@@ -37,6 +37,9 @@ public class MyApplication extends Application {
             DBInit.assetsInit();
             //初始化分类列表
             DBInit.categoryInit();
+            //初始化记录列表
+            DBInit.recordInit();
+
             //设置数据已经初始化
             SPUtil.put(context, Constant.TEXT_DATA_INIT, true);
         }

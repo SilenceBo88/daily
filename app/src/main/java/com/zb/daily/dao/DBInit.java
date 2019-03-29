@@ -6,6 +6,7 @@ import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.model.Assets;
 import com.zb.daily.model.Category;
+import com.zb.daily.model.Record;
 import com.zb.daily.util.SPUtil;
 
 import java.util.ArrayList;
@@ -131,5 +132,57 @@ public class DBInit {
         //以json格式保存到SharedPreference中，在添加和修改分类页面时初始化图标列表时使用
         String jsonString = JSONArray.toJSONString(categoryImageList);
         SPUtil.put(MyApplication.getContext(), Constant.TEXT_CATEGORY_IMAGE_LIST, jsonString);
+    }
+
+    //记录数据初始化
+    public static void recordInit(){
+        RecordDao recordDao = new RecordDao();
+
+        //记录集合
+        List<Record> recordList = new ArrayList<>();
+
+        Record record1 = new Record(10.0, "2019-03-29", "晚餐", 1,
+                1, R.drawable.category_food, "餐饮", 2, "微信");
+        Record record2 = new Record(10.0, "2019-03-29", "午餐", 1,
+                1, R.drawable.category_food, "餐饮", 2, "微信");
+        Record record3 = new Record(10.0, "2019-03-29", "早餐", 1,
+                1, R.drawable.category_food, "餐饮", 2, "微信");
+
+        Record record4 = new Record(10.0, "2019-03-28", "晚餐", 1,
+                1, R.drawable.category_food, "餐饮", 3, "支付宝");
+        Record record5 = new Record(10.0, "2019-03-28", "午餐", 1,
+                1, R.drawable.category_food, "餐饮", 3, "支付宝");
+        Record record6 = new Record(10.0, "2019-03-28", "早餐", 1,
+                1, R.drawable.category_food, "餐饮", 3, "支付宝");
+
+        Record record7 = new Record(10.0, "2019-03-26", "晚餐", 1,
+                1, R.drawable.category_food, "餐饮", 1, "现金");
+        Record record8 = new Record(10.0, "2019-03-26", "午餐", 1,
+                1, R.drawable.category_food, "餐饮", 1, "现金");
+        Record record9 = new Record(10.0, "2019-03-26", "早餐", 1,
+                1, R.drawable.category_food, "餐饮", 1, "现金");
+
+        Record record10 = new Record(4000.0, "2019-03-24", "工资", 2,
+                9, R.drawable.category_salary, "薪资", 4, "储蓄卡");
+        Record record11 = new Record(100.0, "2019-03-24", "兼职", 2,
+                10, R.drawable.category_parttime, "兼职", 3, "支付宝");
+        Record record12 = new Record(200.0, "2019-03-24", "买衣服", 1,
+                3, R.drawable.category_clothes, "衣服", 2, "微信");
+
+        recordList.add(record1);
+        recordList.add(record2);
+        recordList.add(record3);
+        recordList.add(record4);
+        recordList.add(record5);
+        recordList.add(record6);
+        recordList.add(record7);
+        recordList.add(record8);
+        recordList.add(record9);
+        recordList.add(record10);
+        recordList.add(record11);
+        recordList.add(record12);
+
+        //保存到数据库，以便正常crud
+        recordDao.saveRecordList(recordList);
     }
 }

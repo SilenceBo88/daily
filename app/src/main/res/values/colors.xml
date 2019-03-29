@@ -12,5 +12,7 @@
     <color name="color_black">#000000</color>
     <color name="color_shallow_gray">#b3adad</color>
     <color name="color_shallow2_gray">#e6e3e3</color>
+    <color name="color_green">#18da15</color>
+    <color name="color_red">#df3b17</color>
 
 </resources>
