@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.Toast;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
+import com.zb.daily.UI.RecordAddActivity;
 import com.zb.daily.adapter.RecordMainListAdapter;
 import com.zb.daily.dao.RecordDao;
 import com.zb.daily.model.Record;
@@ -79,7 +80,7 @@ public class IndexFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "FABIndex clicked", Toast.LENGTH_SHORT).show();
+                RecordAddActivity.actionStart(activity);
             }
         });
 

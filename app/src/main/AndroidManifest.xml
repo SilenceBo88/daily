@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".UI.CategoryUpdateActivity">
         </activity>
+        <activity android:name=".UI.RecordAddActivity">
+        </activity>
     </application>
 
 </manifest>

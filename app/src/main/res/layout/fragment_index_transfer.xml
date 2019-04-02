@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--记一笔的转账页面-->
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".UI.AssetsTransferActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:id="@+id/fragment_index_transfer_out"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:layout_height="50dp"
+                android:background="@color/color_white"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/color_black"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="转出账户"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/fragment_index_transfer_out_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:textColor="@color/color_black"
+                        android:textSize="18sp"
+                        android:text=""/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/fragment_index_transfer_in"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:layout_height="50dp"
+                android:background="@color/color_white"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/color_black"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="转入账户"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/fragment_index_transfer_in_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:textColor="@color/color_black"
+                        android:textSize="18sp"
+                        android:text=""/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/assets_transfer_money"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:layout_height="50dp"
+                android:background="@color/color_white"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/color_black"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="转账金额"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical">
+
+                <EditText
+                        android:id="@+id/assets_transfer_money_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:gravity="right"
+                        android:background="@null"
+                        android:inputType="number|numberDecimal"
+                        android:hint="0.00"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/fragment_index_transfer_date"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:layout_height="50dp"
+                android:background="@color/color_white"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/color_black"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="转账日期"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/fragment_index_transfer_date_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:textColor="@color/color_black"
+                        android:textSize="18sp"
+                        android:text=""/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/fragment_index_transfer_remark"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:layout_height="50dp"
+                android:background="@color/color_white"
+                android:orientation="horizontal">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:textColor="@color/color_black"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="备注"/>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical">
+
+                <EditText
+                        android:id="@+id/fragment_index_transfer_remark_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="12dp"
+                        android:gravity="right"
+                        android:background="@null"
+                        android:hint="请输入备注"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/fragment_index_transfer_btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:background="@color/color_shallow2_gray"
+            android:textSize="14sp"
+            android:textColor="@color/color_black"
+            android:text="保存"/>
+
+</LinearLayout>
