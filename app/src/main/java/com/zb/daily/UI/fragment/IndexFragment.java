@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.RecordAddActivity;
+import com.zb.daily.adapter.AssetsMainListAdapter;
 import com.zb.daily.adapter.RecordMainListAdapter;
 import com.zb.daily.dao.RecordDao;
 import com.zb.daily.model.Record;
@@ -44,6 +45,10 @@ public class IndexFragment extends Fragment {
     private RecordDao recordDao = new RecordDao();
 
     static RecordMainListAdapter adapter = null;
+
+    public static RecyclerView.Adapter getRecordAdapter() {
+        return adapter;
+    }
 
     @Nullable
     @Override

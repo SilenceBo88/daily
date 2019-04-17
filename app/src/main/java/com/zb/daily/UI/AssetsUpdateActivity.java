@@ -74,9 +74,9 @@ public class AssetsUpdateActivity extends BaseActivity {
         updateSaveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String name = updateName.getText().toString();
-                String remark = updateRemark.getText().toString();
-                String balanceString = updateBalance.getText().toString();
+                String name = updateName.getText().toString().trim();
+                String remark = updateRemark.getText().toString().trim();
+                String balanceString = updateBalance.getText().toString().trim();
 
                 if (name.isEmpty()){
                     ToastUtils.show("资产名称不能为空");

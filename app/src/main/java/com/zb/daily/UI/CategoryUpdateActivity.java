@@ -106,7 +106,7 @@ public class CategoryUpdateActivity extends BaseActivity {
         categoryUpdateSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String name = categoryUpdateName.getText().toString();
+                String name = categoryUpdateName.getText().toString().trim();
                 if (name.isEmpty()){
                     ToastUtils.show("分类名称不能为空");
                     return;

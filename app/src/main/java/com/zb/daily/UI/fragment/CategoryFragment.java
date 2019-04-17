@@ -104,8 +104,8 @@ public class CategoryFragment extends Fragment implements StartDragListener {
         });
 
         //查询支出与收入列表
-        outList = categoryDao.findAssetsListByType(1);
-        inList = categoryDao.findAssetsListByType(2);
+        outList = categoryDao.findCategoryListByType(1);
+        inList = categoryDao.findCategoryListByType(2);
 
         //支出的list适配
         RecyclerView outRecyclerView = activity.findViewById(R.id.fragment_category_outRecyclerView);

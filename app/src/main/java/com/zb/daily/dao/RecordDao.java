@@ -13,6 +13,11 @@ import java.util.List;
  */
 public class RecordDao {
 
+    //保存记录
+    public boolean saveRecord(Record temp) {
+        return temp.save();
+    }
+
     //保存记录集合
     public void saveRecordList(List<Record> recordList) {
         DataSupport.saveAll(recordList);
@@ -20,7 +25,7 @@ public class RecordDao {
 
     //查询记录集合按时间降序排列
     public List<Record> findRecordList() {
-        List<Record> recordList = DataSupport.order("date desc").find(Record.class);
+        List<Record> recordList = DataSupport.order("date desc, id desc").find(Record.class);
         return recordList;
     }
 

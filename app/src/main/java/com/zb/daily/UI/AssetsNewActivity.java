@@ -74,9 +74,9 @@ public class AssetsNewActivity extends BaseActivity {
         addDetailSaveButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                String name = addDetailName.getText().toString();
-                String remark = addDetailRemark.getText().toString();
-                String balanceString = addDetailBalance.getText().toString();
+                String name = addDetailName.getText().toString().trim();
+                String remark = addDetailRemark.getText().toString().trim();
+                String balanceString = addDetailBalance.getText().toString().trim();
 
                 if (name.isEmpty()){
                     ToastUtils.show("资产名称不能为空");

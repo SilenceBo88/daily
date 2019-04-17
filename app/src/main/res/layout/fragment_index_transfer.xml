@@ -204,7 +204,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="40dp"
-            android:background="@color/color_shallow2_gray"
+            android:background="@color/colorPrimary"
             android:textSize="14sp"
             android:textColor="@color/color_black"
             android:text="保存"/>

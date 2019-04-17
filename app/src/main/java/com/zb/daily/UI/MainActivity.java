@@ -21,12 +21,15 @@ import com.zb.daily.UI.fragment.ChartFragment;
 import com.zb.daily.UI.fragment.IndexFragment;
 import com.zb.daily.adapter.AssetsMainListAdapter;
 import com.zb.daily.adapter.CategoryMainListAdapter;
+import com.zb.daily.adapter.RecordMainListAdapter;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
 import com.zb.daily.model.Category;
+import com.zb.daily.model.Record;
 import com.zb.daily.util.ActivityManager;
 import org.litepal.tablemanager.Connector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -105,6 +108,18 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode){
+           /* case 1001:
+                //添加记录页面返回局部刷新item
+                if (resultCode == RESULT_OK){
+                    String returnData = data.getStringExtra("record_add_return");
+                    List<Record> recordList = new ArrayList<>();
+                    recordList = JSON.parseObject(returnData, recordList.getClass());
+
+                    RecordMainListAdapter adapter = (RecordMainListAdapter) IndexFragment.getRecordAdapter();
+                    adapter.getRecordList().addAll(recordList);
+                    adapter.notifyDataSetChanged();
+                }
+                break;*/
             case 3001:
                 //资产详情页面返回局部刷新item
                 if (resultCode == RESULT_OK){
@@ -216,6 +231,7 @@ public class MainActivity extends BaseActivity {
         Intent intent = new Intent();
         intent.setClass(context, MainActivity.class);
         intent.putExtra("to", to);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
         context.startActivity(intent);
         /*((BaseActivity)context).startActivityForResult(intent,1);*/
     }

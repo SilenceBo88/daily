@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.zb.daily.BaseActivity;
+import com.zb.daily.Constant;
+import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.fragment.IndexFragment;
 import com.zb.daily.UI.fragment.IndexRecordInFragment;
@@ -44,7 +46,7 @@ public class RecordAddActivity extends BaseActivity {
         preButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                MainActivity.actionStart(getApplicationContext(), Constant.TO_INDEX_FRAGMENT);
             }
         });
 
@@ -83,8 +85,8 @@ public class RecordAddActivity extends BaseActivity {
     public static void actionStart(Context context){
         Intent intent = new Intent();
         intent.setClass(context, RecordAddActivity.class);
-        context.startActivity(intent);
-        /*((BaseActivity)context).startActivityForResult(intent,1);*/
+        /*context.startActivity(intent);*/
+        ((BaseActivity)context).startActivityForResult(intent,1001);
     }
 
     //动态切换fragment
@@ -93,5 +95,11 @@ public class RecordAddActivity extends BaseActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.activity_record_content_frame, fragment);
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        MainActivity.actionStart(getApplicationContext(), Constant.TO_INDEX_FRAGMENT);
     }
 }

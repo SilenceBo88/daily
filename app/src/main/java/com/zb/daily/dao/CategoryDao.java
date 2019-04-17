@@ -1,7 +1,6 @@
 package com.zb.daily.dao;
 
 import android.content.ContentValues;
-import com.zb.daily.model.Assets;
 import com.zb.daily.model.Category;
 import org.litepal.crud.DataSupport;
 
@@ -25,7 +24,7 @@ public class CategoryDao {
     }
 
     //按照分类类型查询分类集合
-    public List<Category> findAssetsListByType(Integer type){
+    public List<Category> findCategoryListByType(Integer type){
         List<Category> categoryList = DataSupport.where("type = ?", type.toString()).find(Category.class);
         return categoryList;
     }
@@ -35,7 +34,7 @@ public class CategoryDao {
         if (categoryList.size() == 0){
             return;
         }
-        List<Category> tempCategory = findAssetsListByType(categoryList.get(0).getType());
+        List<Category> tempCategory = findCategoryListByType(categoryList.get(0).getType());
 
         for (int i=0; i<categoryList.size(); i++){
             Category temp = new Category();
