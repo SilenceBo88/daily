@@ -58,8 +58,6 @@ public class IndexRecordOutFragment extends Fragment {
 
     private TextView assetsText;
 
-    private LinearLayout categoryLayout;
-
     private ImageView categoryImage;
 
     private Button saveButton;
@@ -73,8 +71,6 @@ public class IndexRecordOutFragment extends Fragment {
     private CategoryDao categoryDao = new CategoryDao();
     private RecordDao recordDao = new RecordDao();
     List<Category> categoryImageList;
-
-    private List<Record> recordList = new ArrayList();
 
     //默认图标
     int defaultImage = 0;
@@ -104,7 +100,6 @@ public class IndexRecordOutFragment extends Fragment {
         dateText = activity.findViewById(R.id.fragment_index_record_out_date_text);
         assetsLayout = activity.findViewById(R.id.fragment_index_record_out_assets);
         assetsText = activity.findViewById(R.id.fragment_index_record_out_assets_text);
-        categoryLayout = activity.findViewById(R.id.fragment_index_record_out_category);
         categoryImage = activity.findViewById(R.id.fragment_index_record_out_category_image);
         saveButton = activity.findViewById(R.id.fragment_index_record_out_btn_save);
 
@@ -167,7 +162,6 @@ public class IndexRecordOutFragment extends Fragment {
                         currentCategory.getId(), currentCategory.getImageId(), currentCategory.getName(),
                         currentAssets.getId(), currentAssets.getName());
                 if (recordDao.saveRecord(temp)){
-                    /*recordList.add(temp);*/
                     ToastUtils.show("保存成功");
                     showChooseDialog();
                 }
@@ -238,7 +232,8 @@ public class IndexRecordOutFragment extends Fragment {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       textMoney.setText("");
+                        textMoney.setText("");
+                        textRemark.setText("");
                     }
                 });
         normalDialog.setNegativeButton("取消",
@@ -247,9 +242,6 @@ public class IndexRecordOutFragment extends Fragment {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                         MainActivity.actionStart(activity, Constant.TO_INDEX_FRAGMENT);
-                        /*Intent intent = new Intent();
-                        intent.putExtra("record_add_return", JSONObject.toJSONString(recordList));
-                        activity.setResult(activity.RESULT_OK, intent);*/
                         activity.finish();
                     }
                 });
