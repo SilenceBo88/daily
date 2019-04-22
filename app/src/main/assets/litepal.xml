@@ -5,6 +5,8 @@
 
     <list>
         <mapping class="com.zb.daily.model.Assets"></mapping>
+        <mapping class="com.zb.daily.model.AssetsTransfer"></mapping>
+        <mapping class="com.zb.daily.model.AssetsUpdate"></mapping>
         <mapping class="com.zb.daily.model.Category"></mapping>
         <mapping class="com.zb.daily.model.Record"></mapping>
     </list>

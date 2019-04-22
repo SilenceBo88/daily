@@ -44,7 +44,7 @@
                             android:textColor="@color/color_white"
                             android:textSize="18sp"
                             android:layout_centerHorizontal="true"
-                            android:text="记一笔"/>
+                            android:text="修改记录"/>
 
                 </RelativeLayout>
 
