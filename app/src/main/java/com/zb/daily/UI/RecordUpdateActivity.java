@@ -9,44 +9,58 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
-import com.zb.daily.MyApplication;
 import com.zb.daily.R;
-import com.zb.daily.UI.fragment.IndexFragment;
 import com.zb.daily.UI.fragment.IndexRecordInFragment;
 import com.zb.daily.UI.fragment.IndexRecordOutFragment;
-import com.zb.daily.UI.fragment.IndexTransferFragment;
+import com.zb.daily.UI.fragment.IndexRecordUpdateInFragment;
+import com.zb.daily.UI.fragment.IndexRecordUpdateOutFragment;
+import com.zb.daily.model.Category;
+import com.zb.daily.model.Record;
 
 /**
  * @auther: zb
- * @Date: 2019/4/2 16:31
- * @Description: 添加记录活动，即记账活动
+ * @Date: 2019/4/19 21:31
+ * @Description: 修改记录活动
  */
-public class RecordAddActivity extends BaseActivity {
+public class RecordUpdateActivity extends AppCompatActivity {
 
     private Button preButton;
     private Button outButton;
     private Button inButton;
-    private Button transferButton;
+    Record record;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_record_add);
+        setContentView(R.layout.activity_record_update);
 
-        preButton = findViewById(R.id.activity_record_btn_pre);
-        outButton = findViewById(R.id.activity_record_btn_out);
-        inButton = findViewById(R.id.activity_record_btn_in);
-        transferButton = findViewById(R.id.activity_record_btn_transfer);
+        String jsonStr = getIntent().getStringExtra("record");
+        record = JSON.parseObject(jsonStr, Record.class);
+
+        preButton = findViewById(R.id.activity_record_update_btn_pre);
+        outButton = findViewById(R.id.activity_record_btn_update_out);
+        inButton = findViewById(R.id.activity_record_btn_update_in);
 
         //默认加载支出记录页面
-        replaceFragment(new IndexRecordOutFragment());
+        if (record.getType() == 1){
+            outButton.setBackgroundResource(R.drawable.button_pressed);
+            inButton.setBackgroundResource(R.drawable.button_normal);
+            replaceFragment(new IndexRecordUpdateOutFragment(record));
+        }else {
+            outButton.setBackgroundResource(R.drawable.button_normal);
+            inButton.setBackgroundResource(R.drawable.button_pressed);
+            replaceFragment(new IndexRecordUpdateInFragment(record));
+        }
 
         preButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MainActivity.actionStart(getApplicationContext(), Constant.TO_INDEX_FRAGMENT);
+                finish();
             }
         });
 
@@ -55,8 +69,7 @@ public class RecordAddActivity extends BaseActivity {
             public void onClick(View v) {
                 outButton.setBackgroundResource(R.drawable.button_pressed);
                 inButton.setBackgroundResource(R.drawable.button_normal);
-                transferButton.setBackgroundResource(R.drawable.button_normal);
-                replaceFragment(new IndexRecordOutFragment());
+                replaceFragment(new IndexRecordUpdateOutFragment(record));
             }
         });
 
@@ -65,35 +78,25 @@ public class RecordAddActivity extends BaseActivity {
             public void onClick(View v) {
                 outButton.setBackgroundResource(R.drawable.button_normal);
                 inButton.setBackgroundResource(R.drawable.button_pressed);
-                transferButton.setBackgroundResource(R.drawable.button_normal);
-                replaceFragment(new IndexRecordInFragment());
-            }
-        });
-
-        transferButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                outButton.setBackgroundResource(R.drawable.button_normal);
-                inButton.setBackgroundResource(R.drawable.button_normal);
-                transferButton.setBackgroundResource(R.drawable.button_pressed);
-                replaceFragment(new IndexTransferFragment());
+                replaceFragment(new IndexRecordUpdateInFragment(record));
             }
         });
     }
 
     //启动本活动
-    public static void actionStart(Context context){
+    public static void actionStart(Context context, Record record){
         Intent intent = new Intent();
-        intent.setClass(context, RecordAddActivity.class);
+        intent.setClass(context, RecordUpdateActivity.class);
+        intent.putExtra("record", JSONObject.toJSONString(record));
         context.startActivity(intent);
-        /*((BaseActivity)context).startActivityForResult(intent,1001);*/
+        /*((BaseActivity)context).startActivityForResult(intent,1002);*/
     }
 
     //动态切换fragment
     public void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.activity_record_content_frame, fragment);
+        transaction.replace(R.id.activity_record_content_update_frame, fragment);
         transaction.commit();
     }
 

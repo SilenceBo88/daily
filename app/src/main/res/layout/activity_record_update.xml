@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--修改记录页面-->
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".UI.RecordAddActivity">
+
+    <!--使用AppBarLayout布局解决遮挡Toobar的问题-->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+            <!--新的标题栏-->
+            <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:titleTextColor="@color/color_white"
+                    app:layout_collapseMode="pin">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <Button
+                            android:id="@+id/activity_record_update_btn_pre"
+                            android:layout_width="25dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentLeft="true"
+                            android:background="@drawable/ic_pre"/>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/color_white"
+                            android:textSize="18sp"
+                            android:layout_centerHorizontal="true"
+                            android:text="记一笔"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </android.support.design.widget.AppBarLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="15dp"
+            android:orientation="horizontal" >
+
+        <Button
+                android:id="@+id/activity_record_btn_update_out"
+                android:layout_width="0dip"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_pressed"
+                android:layout_margin="1dp"
+                android:text="支出" />
+
+
+        <Button
+                android:id="@+id/activity_record_btn_update_in"
+                android:layout_width="0dip"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_normal"
+                android:layout_margin="1dp"
+                android:text="收入" />
+
+    </LinearLayout>
+
+    <FrameLayout
+            android:id="@+id/activity_record_content_update_frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</LinearLayout>

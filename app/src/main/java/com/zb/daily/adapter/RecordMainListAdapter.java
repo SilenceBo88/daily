@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hjq.toast.ToastUtils;
 import com.zb.daily.R;
+import com.zb.daily.UI.RecordUpdateActivity;
 import com.zb.daily.dao.RecordDao;
 import com.zb.daily.model.Record;
 
@@ -82,7 +83,7 @@ public class RecordMainListAdapter extends RecyclerView.Adapter<RecordMainListAd
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 Record record = mRecordList.get(position);
-                ToastUtils.show("你点击了" + record.getCategoryName() + "的" + record.getRemark());
+                RecordUpdateActivity.actionStart(mContext, record);
                /* AssetsDetailActivity.actionStart(mContext, assets, position);*/
             }
         });

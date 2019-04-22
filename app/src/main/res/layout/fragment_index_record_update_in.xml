@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--修改记录的收入页面-->
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+            android:id="@+id/fragment_index_record_update_in_money"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="50dp"
+            android:background="@color/color_white"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/color_black"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:text="金额"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_gravity="center_vertical">
+
+            <EditText
+                    android:id="@+id/fragment_index_record_update_in_money_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:gravity="right"
+                    android:background="@null"
+                    android:inputType="number|numberDecimal"
+                    android:hint="0.00"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/fragment_index_record_update_in_remark"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="50dp"
+            android:background="@color/color_white"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/color_black"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:text="备注"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_gravity="center_vertical">
+
+            <EditText
+                    android:id="@+id/fragment_index_record_update_in_remark_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:gravity="right"
+                    android:background="@null"
+                    android:hint="请输入备注"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/fragment_index_record_update_in_date"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="50dp"
+            android:background="@color/color_white"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/color_black"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:text="选择日期"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_gravity="center_vertical">
+
+            <TextView
+                    android:id="@+id/fragment_index_record_update_in_date_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp"
+                    android:text=""/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/fragment_index_record_update_in_assets"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:layout_height="50dp"
+            android:background="@color/color_white"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/color_black"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:text="选择账户"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_gravity="center_vertical">
+
+            <TextView
+                    android:id="@+id/fragment_index_record_update_in_assets_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:textColor="@color/color_black"
+                    android:textSize="18sp"
+                    android:text=""/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:id="@+id/fragment_index_record_update_in_category"
+            android:layout_width="match_parent"
+            android:layout_margin="5dp"
+            android:background="@color/color_white"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:textColor="@color/color_black"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:text="选择分类"/>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_gravity="center_vertical">
+
+            <ImageView
+                    android:id="@+id/fragment_index_record_update_in_category_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+            android:layout_margin="6dp"
+            android:id="@+id/fragment_index_record_update_in_add_image_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <Button
+            android:id="@+id/fragment_index_record_update_in_btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="40dp"
+            android:background="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textColor="@color/color_black"
+            android:text="保存"/>
+
+</LinearLayout>

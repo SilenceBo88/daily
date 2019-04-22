@@ -1,5 +1,6 @@
 package com.zb.daily.dao;
 
+import android.content.ContentValues;
 import com.zb.daily.model.Category;
 import com.zb.daily.model.Record;
 import org.litepal.crud.DataSupport;
@@ -37,6 +38,22 @@ public class RecordDao {
             sum += record.getMoney();
         }
         return sum;
+    }
+
+    //修改资产
+    public boolean updateRecord(Record temp) {
+        ContentValues values = new ContentValues();
+        values.put("money", temp.getMoney());
+        values.put("date", temp.getDate());
+        values.put("remark", temp.getRemark());
+        values.put("type", temp.getType());
+        values.put("category_id", temp.getCategoryId());
+        values.put("category_imageId", temp.getCategoryImageId());
+        values.put("category_name", temp.getCategoryName());
+        values.put("assets_id", temp.getAssetsId());
+        values.put("assets_name", temp.getAssetsName());
+
+        return DataSupport.update(Record.class, values, temp.getId()) == 1;
     }
 
     //删除记录

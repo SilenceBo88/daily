@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".UI.RecordAddActivity">
         </activity>
+        <activity android:name=".UI.RecordUpdateActivity">
+        </activity>
     </application>
 
 </manifest>
