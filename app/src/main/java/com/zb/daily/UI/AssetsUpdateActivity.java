@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +15,14 @@ import com.hjq.toast.ToastUtils;
 import com.zb.daily.BaseActivity;
 import com.zb.daily.R;
 import com.zb.daily.dao.AssetsDao;
+import com.zb.daily.dao.AssetsUpdateDao;
 import com.zb.daily.model.Assets;
+import com.zb.daily.model.AssetsUpdate;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @auther: zb
@@ -41,6 +46,7 @@ public class AssetsUpdateActivity extends BaseActivity {
     //查询数据库
     private AssetsDao assetsDao = new AssetsDao();
     private Assets assets;
+    private AssetsUpdateDao assetsUpdateDao = new AssetsUpdateDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +107,15 @@ public class AssetsUpdateActivity extends BaseActivity {
                 temp.setBalance(balance);
 
                 if (assetsDao.updateAssets(temp)){
+                    AssetsUpdate assetsUpdate = new AssetsUpdate();
+                    assetsUpdate.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+                    assetsUpdate.setFromMoney(assets.getBalance());
+                    assetsUpdate.setToMoney(balance);
+                    if (assetsUpdateDao.saveAssets(assetsUpdate)){
+                        Log.d("assetsUpdate:", assetsUpdate.toString());
+                        Log.d("AssetsUpdateActivity:", "资产修改添加成功");
+                    }
+
                     //修改成功，返回资产详情页面
                     ToastUtils.show("修改成功");
                     Intent intent = new Intent();

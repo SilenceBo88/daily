@@ -167,6 +167,7 @@
                     android:layout_gravity="center_vertical">
 
                 <EditText
+                        android:id="@+id/activity_assets_transfer_money_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"
@@ -239,6 +240,7 @@
                     android:layout_gravity="center_vertical">
 
                 <EditText
+                        android:id="@+id/activity_assets_transfer_remark_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"

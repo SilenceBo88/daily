@@ -109,7 +109,7 @@
                     android:layout_gravity="center_vertical">
 
                 <EditText
-                        android:id="@+id/assets_transfer_money_text"
+                        android:id="@+id/fragment_index_transfer_money_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="12dp"

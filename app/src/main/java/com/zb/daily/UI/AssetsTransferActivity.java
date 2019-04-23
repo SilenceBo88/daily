@@ -9,12 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.*;
+import com.hjq.toast.ToastUtils;
 import com.zb.daily.BaseActivity;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.adapter.AssetsTransferDialogAdapter;
 import com.zb.daily.dao.AssetsDao;
+import com.zb.daily.dao.AssetsTransferDao;
 import com.zb.daily.model.Assets;
+import com.zb.daily.model.AssetsTransfer;
 
 import java.util.List;
 
@@ -33,16 +36,19 @@ public class AssetsTransferActivity extends BaseActivity {
     //保存按钮
     private Button saveButton;
     //转出资产账户
-    private Assets outAssets;
+    private Assets outAssets = null;
     //转入资产账户
-    private Assets inAssets;
+    private Assets inAssets = null;
     private TextView outTextView;
     private TextView inTextView;
     private TextView dateTextView;
+    private EditText moneyText;
+    private EditText remarkText;
     //资产弹出框
     private AssetsTransferDialogAdapter listAdapter;
     private AssetsDao assetsDao = new AssetsDao();
     private List<Assets> assetsList;
+    private AssetsTransferDao assetsTransferDao = new AssetsTransferDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,8 @@ public class AssetsTransferActivity extends BaseActivity {
         outTextView = findViewById(R.id.activity_assets_transfer_out_text);
         inTextView = findViewById(R.id.activity_assets_transfer_in_text);
         dateTextView = findViewById(R.id.activity_assets_transfer_date_text);
+        moneyText = findViewById(R.id.activity_assets_transfer_money_text);
+        remarkText = findViewById(R.id.activity_assets_transfer_remark_text);
         preButton = findViewById(R.id.activity_assets_transfer_btn_pre);
         saveButton = findViewById(R.id.activity_assets_transfer_btn_save);
 
@@ -89,16 +97,47 @@ public class AssetsTransferActivity extends BaseActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                setResult(RESULT_OK, intent);
-                finish();
+                if (null == outAssets){
+                    ToastUtils.show("转出账户不能为空");
+                    return;
+                }
+                if (null == inAssets){
+                    ToastUtils.show("转入账户不能为空");
+                    return;
+                }
+                String money = moneyText.getText().toString().trim();
+                if (money.isEmpty()){
+                    ToastUtils.show("金额不能为空");
+                    return;
+                }
+                String date = dateTextView.getText().toString().trim();
+                if (date.isEmpty()){
+                    ToastUtils.show("日期不能为空");
+                    return;
+                }
+                String remark = "";
+                remark = remarkText.getText().toString().trim();
+
+                AssetsTransfer assetsTransfer = new AssetsTransfer();
+                assetsTransfer.setFromId(outAssets.getId());
+                assetsTransfer.setToId(inAssets.getId());
+                assetsTransfer.setMoney(Double.valueOf(money));
+                assetsTransfer.setDate(date);
+                assetsTransfer.setRemark(remark);
+
+                if (assetsTransferDao.saveAssets(assetsTransfer)){
+                    ToastUtils.show("保存成功");
+                    Intent intent = new Intent();
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }else {
+                    ToastUtils.show("保存失败");
+                }
             }
         });
 
         assetsList = assetsDao.findAssetsList();
         listAdapter = new AssetsTransferDialogAdapter(MyApplication.getContext(), assetsList);
-
-        //todo 转账功能完善
     }
 
     //转出账户弹出框
