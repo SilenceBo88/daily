@@ -30,6 +30,12 @@ public class RecordDao {
         return recordList;
     }
 
+    //查询记录列表根据资产id
+    public List<Record> findRecordListByAssetsId(Integer assetsId) {
+        List<Record> recordList = DataSupport.where("assets_id = ?", assetsId.toString()).order("date desc, id desc").find(Record.class);
+        return recordList;
+    }
+
     //查询日支出/收入
     public double getDaySummary(Integer type, String date) {
         List<Record> recordList = DataSupport.select("money").where("type = ? and date = ?", type.toString(), date).find(Record.class);
@@ -60,4 +66,5 @@ public class RecordDao {
     public boolean deleteRecord(Integer id) {
         return DataSupport.delete(Record.class, id) == 1;
     }
+
 }

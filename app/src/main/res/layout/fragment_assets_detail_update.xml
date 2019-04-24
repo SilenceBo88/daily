@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--资产详情的的修改页面-->
+<android.support.v7.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/fragment_assets_detail_update_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>

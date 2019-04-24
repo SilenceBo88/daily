@@ -137,4 +137,20 @@ public class Record extends DataSupport {
         this.assets_id = assets_id;
         this.assets_name = assets_name;
     }
+
+    @Override
+    public String toString() {
+        return "Record{" +
+                "id=" + id +
+                ", money=" + money +
+                ", date='" + date + '\'' +
+                ", remark='" + remark + '\'' +
+                ", type=" + type +
+                ", category_id=" + category_id +
+                ", category_imageId=" + category_imageId +
+                ", category_name='" + category_name + '\'' +
+                ", assets_id=" + assets_id +
+                ", assets_name='" + assets_name + '\'' +
+                '}';
+    }
 }

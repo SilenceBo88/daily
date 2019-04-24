@@ -111,6 +111,7 @@ public class AssetsUpdateActivity extends BaseActivity {
                     assetsUpdate.setDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
                     assetsUpdate.setFromMoney(assets.getBalance());
                     assetsUpdate.setToMoney(balance);
+                    assetsUpdate.setAssetsId(assets.getId());
                     if (assetsUpdateDao.saveAssets(assetsUpdate)){
                         Log.d("assetsUpdate:", assetsUpdate.toString());
                         Log.d("AssetsUpdateActivity:", "资产修改添加成功");

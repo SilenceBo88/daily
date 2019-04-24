@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +25,9 @@ import com.hjq.toast.ToastUtils;
 import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
 import com.zb.daily.R;
+import com.zb.daily.UI.fragment.AssetsDetailBillFragment;
+import com.zb.daily.UI.fragment.AssetsDetailTransferFragment;
+import com.zb.daily.UI.fragment.AssetsDetailUpdateFragment;
 import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.model.Assets;
 
@@ -50,6 +56,10 @@ public class AssetsDetailActivity extends BaseActivity {
 
     private int position;
 
+    private Button transferButton;
+    private Button billButton;
+    private Button updateButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +76,9 @@ public class AssetsDetailActivity extends BaseActivity {
         assetsDetailRemark = findViewById(R.id.activity_assets_detail_remark);
         assetsDetailBalance = findViewById(R.id.activity_assets_detail_balance);
         assetsDetailLine = findViewById(R.id.activity_assets_detail_line);
+        transferButton = findViewById(R.id.activity_assets_detail_btn_transfer);
+        billButton = findViewById(R.id.activity_assets_detail_btn_bill);
+        updateButton = findViewById(R.id.activity_assets_detail_btn_update);
 
         //获取活动传递的数据
         String jsonString = getIntent().getStringExtra("assets");
@@ -81,7 +94,38 @@ public class AssetsDetailActivity extends BaseActivity {
             }
         });
 
-        //todo 资产变动情况列表
+        //默认加载支出记录页面
+        replaceFragment(new AssetsDetailBillFragment(assets.getId()));
+
+        transferButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferButton.setBackgroundResource(R.drawable.button_pressed);
+                billButton.setBackgroundResource(R.drawable.button_normal);
+                updateButton.setBackgroundResource(R.drawable.button_normal);
+                replaceFragment(new AssetsDetailTransferFragment(assets.getId()));
+            }
+        });
+
+        billButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferButton.setBackgroundResource(R.drawable.button_normal);
+                billButton.setBackgroundResource(R.drawable.button_pressed);
+                updateButton.setBackgroundResource(R.drawable.button_normal);
+                replaceFragment(new AssetsDetailBillFragment(assets.getId()));
+            }
+        });
+
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transferButton.setBackgroundResource(R.drawable.button_normal);
+                billButton.setBackgroundResource(R.drawable.button_normal);
+                updateButton.setBackgroundResource(R.drawable.button_pressed);
+                replaceFragment(new AssetsDetailUpdateFragment(assets.getId()));
+            }
+        });
     }
 
     //设置控件的值
@@ -186,5 +230,13 @@ public class AssetsDetailActivity extends BaseActivity {
         intent.putExtra("position", position);
         /*context.startActivity(intent);*/
         ((BaseActivity)context).startActivityForResult(intent,3001);
+    }
+
+    //动态切换fragment
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.activity_assets_detail_content_frame, fragment);
+        transaction.commit();
     }
 }

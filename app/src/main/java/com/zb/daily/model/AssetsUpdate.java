@@ -19,6 +19,8 @@ public class AssetsUpdate extends DataSupport {
 
     private String date;//修改日期
 
+    private Integer assets_id; //资产id
+
     public Integer getId() {
         return id;
     }
@@ -51,13 +53,22 @@ public class AssetsUpdate extends DataSupport {
         this.date = date;
     }
 
+    public Integer getAssetsId() {
+        return assets_id;
+    }
+
+    public void setAssetsId(Integer assets_id) {
+        this.assets_id = assets_id;
+    }
+
     public AssetsUpdate() {
     }
 
-    public AssetsUpdate(Double fromMoney, Double toMoney, String date) {
+    public AssetsUpdate(Double fromMoney, Double toMoney, String date, Integer assets_id) {
         this.fromMoney = fromMoney;
         this.toMoney = toMoney;
         this.date = date;
+        this.assets_id = assets_id;
     }
 
     @Override
