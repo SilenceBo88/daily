@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -173,6 +174,25 @@ public class IndexRecordUpdateOutFragment extends Fragment {
                         currentAssets.getId(), currentAssets.getName());
                 temp.setId(record.getId());
                 if (recordDao.updateRecord(temp)){
+                    Log.d("record: ", record.toString());
+                    if (currentAssets.getType() == 1){
+                        if (record.getType() == 2){
+                            assetsDao.removeBalance(record.getAssets(), record.getMoney().toString());
+                        }else {
+                            assetsDao.addBalance(record.getAssets(), record.getMoney().toString());
+                        }
+                        Assets assets = assetsDao.findAssetsById(currentAssets.getId());
+                        assetsDao.removeBalance(assets, money);
+                    }else {
+                        if (record.getType() == 2){
+                            assetsDao.addBalance(record.getAssets(), record.getMoney().toString());
+                        }else {
+                            assetsDao.removeBalance(record.getAssets(), record.getMoney().toString());
+                        }
+                        Assets assets = assetsDao.findAssetsById(currentAssets.getId());
+                        assetsDao.addBalance(assets, money);
+                    }
+
                     ToastUtils.show("修改成功");
                     MainActivity.actionStart(activity, Constant.TO_INDEX_FRAGMENT);
                     activity.finish();

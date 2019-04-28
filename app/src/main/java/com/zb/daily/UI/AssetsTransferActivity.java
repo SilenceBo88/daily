@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.*;
 import com.hjq.toast.ToastUtils;
 import com.zb.daily.BaseActivity;
+import com.zb.daily.Constant;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.adapter.AssetsTransferDialogAdapter;
@@ -115,6 +116,10 @@ public class AssetsTransferActivity extends BaseActivity {
                     ToastUtils.show("日期不能为空");
                     return;
                 }
+                if (inAssets.getId() == outAssets.getId()){
+                    ToastUtils.show("转入账户与转出账户不能相同");
+                    return;
+                }
                 String remark = "";
                 remark = remarkText.getText().toString().trim();
 
@@ -126,10 +131,25 @@ public class AssetsTransferActivity extends BaseActivity {
                 assetsTransfer.setRemark(remark);
 
                 if (assetsTransferDao.saveAssets(assetsTransfer)){
+                    if (outAssets.getType() == 1 && inAssets.getType() == 1){
+                        assetsDao.removeBalance(outAssets, money);
+                        assetsDao.addBalance(inAssets, money);
+                    }
+                    if (outAssets.getType() == 2 && inAssets.getType() == 2){
+                        assetsDao.addBalance(outAssets, money);
+                        assetsDao.removeBalance(inAssets, money);
+                    }
+                    if (outAssets.getType() == 1 && inAssets.getType() == 2){
+                        assetsDao.removeBalance(outAssets, money);
+                        assetsDao.removeBalance(inAssets, money);
+                    }
+                    if (outAssets.getType() == 2 && inAssets.getType() == 1){
+                        assetsDao.addBalance(outAssets, money);
+                        assetsDao.addBalance(inAssets, money);
+                    }
                     ToastUtils.show("保存成功");
-                    Intent intent = new Intent();
-                    setResult(RESULT_OK, intent);
-                    finish();
+                    MainActivity.actionStart(getApplicationContext(), Constant.TO_ASSETS_FRAGMENT);
+
                 }else {
                     ToastUtils.show("保存失败");
                 }

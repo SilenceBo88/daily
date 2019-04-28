@@ -13,9 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.hjq.toast.ToastUtils;
+import com.zb.daily.Constant;
 import com.zb.daily.R;
+import com.zb.daily.UI.MainActivity;
 import com.zb.daily.UI.RecordUpdateActivity;
+import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.dao.RecordDao;
+import com.zb.daily.model.Assets;
 import com.zb.daily.model.Record;
 
 import java.util.HashMap;
@@ -35,6 +39,9 @@ public class RecordMainListAdapter extends RecyclerView.Adapter<RecordMainListAd
     private double dayIn = 0;
     private double dayOut = 0;
     private int longClickPosition = -1;
+    private AssetsDao assetsDao = new AssetsDao();
+    //实现与Activity的数据传输
+    private RecordMainListAdapter.SubClickListener subClickListener;
 
     public RecordMainListAdapter(List<Record> recordList) {
         mRecordList = recordList;
@@ -162,8 +169,24 @@ public class RecordMainListAdapter extends RecyclerView.Adapter<RecordMainListAd
                         mRecordList.remove(longClickPosition);
                         dateItem = new HashMap<>();
                         notifyDataSetChanged();
+                        Assets assets = record.getAssets();
                         if (recordDao.deleteRecord(record.getId())){
+                            if (assets.getType() == 1){
+                                if (record.getType() == 1){
+                                    assetsDao.addBalance(record.getAssets(), record.getMoney().toString());
+                                }else {
+                                    assetsDao.removeBalance(record.getAssets(), record.getMoney().toString());
+                                }
+                            }else {
+                                if (record.getType() == 1){
+                                    assetsDao.removeBalance(record.getAssets(), record.getMoney().toString());
+                                }else {
+                                    assetsDao.addBalance(record.getAssets(), record.getMoney().toString());
+                                }
+                            }
                             ToastUtils.show("删除成功");
+                            subClickListener.OnTopicClickListener("change");
+                            //MainActivity.actionStart(mContext, Constant.TO_INDEX_FRAGMENT);
                         }
                     }
                 });
@@ -187,5 +210,14 @@ public class RecordMainListAdapter extends RecyclerView.Adapter<RecordMainListAd
     //获取资产列表
     public List<Record> getRecordList(){
         return mRecordList;
+    }
+
+    //传数据到activity的接口
+    public interface SubClickListener {
+        void OnTopicClickListener(String s);
+    }
+
+    public void setSubClickListener(RecordMainListAdapter.SubClickListener topicClickListener) {
+        this.subClickListener = topicClickListener;
     }
 }

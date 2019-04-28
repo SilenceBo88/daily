@@ -14,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
@@ -23,7 +24,9 @@ import com.zb.daily.adapter.RecordMainListAdapter;
 import com.zb.daily.dao.RecordDao;
 import com.zb.daily.model.Record;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,6 +46,9 @@ public class IndexFragment extends Fragment {
     private Button menuButton;
     private List<Record> recordList = new ArrayList<>();
     private RecordDao recordDao = new RecordDao();
+
+    private TextView monthIncome;
+    private TextView monthOutlay;
 
     static RecordMainListAdapter adapter = null;
 
@@ -89,13 +95,32 @@ public class IndexFragment extends Fragment {
             }
         });
 
+        monthIncome = activity.findViewById(R.id.tv_month_income);
+        monthOutlay = activity.findViewById(R.id.tv_month_outlay);
+        String month = new SimpleDateFormat("yyyy-MM").format(new Date());
+        double out = recordDao.getMonthSummary(month, 1);
+        double in = recordDao.getMonthSummary(month, 2);
+        monthIncome.setText(String.valueOf(in));
+        monthOutlay.setText(String.valueOf(out));
+
         recordList = recordDao.findRecordList();
 
-        //支出的list适配
+        //记录的list适配
         RecyclerView recyclerView = activity.findViewById(R.id.fragment_index_recordRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(MyApplication.getContext());
         recyclerView.setLayoutManager(layoutManager);
         adapter = new RecordMainListAdapter(recordList);
         recyclerView.setAdapter(adapter);
+
+        adapter.setSubClickListener(new RecordMainListAdapter.SubClickListener() {
+            @Override
+            public void OnTopicClickListener(String s) {
+                String month = new SimpleDateFormat("yyyy-MM").format(new Date());
+                double out = recordDao.getMonthSummary(month, 1);
+                double in = recordDao.getMonthSummary(month, 2);
+                monthIncome.setText(String.valueOf(in));
+                monthOutlay.setText(String.valueOf(out));
+            }
+        });
     }
 }

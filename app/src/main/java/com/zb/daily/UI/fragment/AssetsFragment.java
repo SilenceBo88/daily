@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
 import com.zb.daily.UI.AssetsAddActivity;
@@ -57,6 +58,10 @@ public class AssetsFragment extends Fragment implements StartDragListener {
     private ItemTouchHelper itemtouchhelper;
     //触摸事件帮助类
     private ItemTouchHelper itemtouchhelper2;
+
+    private TextView assets;
+    private TextView allAssets;
+    private TextView allLiability;
 
     static AssetsMainListAdapter assetsAdapter = null;
     static AssetsMainListAdapter liabilityAdapter = null;
@@ -116,6 +121,15 @@ public class AssetsFragment extends Fragment implements StartDragListener {
                 AssetsTransferActivity.actionStart(activity);
             }
         });
+
+        assets = activity.findViewById(R.id.tv_assets);
+        allAssets = activity.findViewById(R.id.tv_all_assets);
+        allLiability = activity.findViewById(R.id.tv_all_liability);
+        double allAssetsText = assetsDao.getAssetsSummary(1);
+        double allLiabilityText = assetsDao.getAssetsSummary(2);
+        assets.setText(String.valueOf(allAssetsText - allLiabilityText));
+        allAssets.setText(String.valueOf(allAssetsText));
+        allLiability.setText(String.valueOf(allLiabilityText));
 
         //查询资产和负债列表
         assetsList = assetsDao.findAssetsListByType(1);

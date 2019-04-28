@@ -120,7 +120,7 @@ public class MainActivity extends BaseActivity {
                     adapter.notifyDataSetChanged();
                 }
                 break;*/
-            case 3001:
+            /*case 3001:
                 //资产详情页面返回局部刷新item
                 if (resultCode == RESULT_OK){
                     String returnData = data.getStringExtra("assets_detail_return");
@@ -137,8 +137,8 @@ public class MainActivity extends BaseActivity {
                         adapter.notifyItemChanged(position);
                     }
                 }
-                break;
-            case 3002:
+                break;*/
+            /*case 3002:
                 //资产转账页面返回全局刷新item
                 if (resultCode == RESULT_OK){
                     List<Assets> assetsList = assetsDao.findAssetsListByType(1);
@@ -155,7 +155,7 @@ public class MainActivity extends BaseActivity {
                     assetsListAdapter.notifyDataSetChanged();
                     liabilityListAdapter.notifyDataSetChanged();
                 }
-                break;
+                break;*/
             case 4001:
                 //分类添加页面返回局部刷新item
                 if (resultCode == RESULT_OK){

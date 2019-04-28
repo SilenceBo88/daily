@@ -46,6 +46,18 @@ public class RecordDao {
         return sum;
     }
 
+    //查询月支出/收入
+    public double getMonthSummary(String month, Integer type) {
+        List<Record> recordList = DataSupport.select("money").where("type = ? and date like ?", type.toString(), month + "%").find(Record.class);
+        double sum = 0;
+        for (Record record : recordList){
+            sum += record.getMoney();
+        }
+        return sum;
+    }
+
+
+
     //修改资产
     public boolean updateRecord(Record temp) {
         ContentValues values = new ContentValues();
@@ -66,5 +78,4 @@ public class RecordDao {
     public boolean deleteRecord(Integer id) {
         return DataSupport.delete(Record.class, id) == 1;
     }
-
 }

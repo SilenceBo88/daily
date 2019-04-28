@@ -159,6 +159,11 @@ public class IndexRecordInFragment extends Fragment {
                         currentCategory.getId(), currentCategory.getImageId(), currentCategory.getName(),
                         currentAssets.getId(), currentAssets.getName());
                 if (recordDao.saveRecord(temp)){
+                    if (currentAssets.getType() == 1){
+                        assetsDao.addBalance(currentAssets, money);
+                    }else {
+                        assetsDao.removeBalance(currentAssets, money);
+                    }
                     ToastUtils.show("保存成功");
                     showChooseDialog();
                 }

@@ -118,6 +118,10 @@ public class IndexTransferFragment extends Fragment {
                     ToastUtils.show("日期不能为空");
                     return;
                 }
+                if (inAssets.getId() == outAssets.getId()){
+                    ToastUtils.show("转入账户与转出账户不能相同");
+                    return;
+                }
                 String remark = "";
                 remark = remarkText.getText().toString().trim();
 
@@ -129,9 +133,27 @@ public class IndexTransferFragment extends Fragment {
                 assetsTransfer.setRemark(remark);
 
                 if (assetsTransferDao.saveAssets(assetsTransfer)){
+                    if (outAssets.getType() == 1 && inAssets.getType() == 1){
+                        assetsDao.removeBalance(outAssets, money);
+                        assetsDao.addBalance(inAssets, money);
+                    }
+                    if (outAssets.getType() == 2 && inAssets.getType() == 2){
+                        assetsDao.addBalance(outAssets, money);
+                        assetsDao.removeBalance(inAssets, money);
+                    }
+                    if (outAssets.getType() == 1 && inAssets.getType() == 2){
+                        assetsDao.removeBalance(outAssets, money);
+                        assetsDao.removeBalance(inAssets, money);
+                    }
+                    if (outAssets.getType() == 2 && inAssets.getType() == 1){
+                        assetsDao.addBalance(outAssets, money);
+                        assetsDao.addBalance(inAssets, money);
+                    }
+
                     ToastUtils.show("保存成功");
                     MainActivity.actionStart(activity, Constant.TO_INDEX_FRAGMENT);
                     activity.finish();
+
                 }else {
                     ToastUtils.show("保存失败");
                 }

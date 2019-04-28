@@ -1,6 +1,7 @@
 package com.zb.daily.dao;
 
 import android.content.ContentValues;
+import android.util.Log;
 import com.zb.daily.model.Assets;
 import org.litepal.crud.DataSupport;
 
@@ -41,6 +42,16 @@ public class AssetsDao {
         return assetsList;
     }
 
+    //查询总资产或总负债
+    public double getAssetsSummary(Integer type) {
+        List<Assets> assetsList = DataSupport.select("balance").where("type = ?", type.toString()).find(Assets.class);
+        double sum = 0;
+        for (Assets assets : assetsList){
+            sum += assets.getBalance();
+        }
+        return sum;
+    }
+
     //修改资产
     public boolean updateAssets(Assets temp) {
         ContentValues values = new ContentValues();
@@ -77,4 +88,30 @@ public class AssetsDao {
         return DataSupport.delete(Assets.class, id) == 1;
     }
 
+    //减去资产
+    public boolean removeBalance(Assets outAssets, String money) {
+        ContentValues values = new ContentValues();
+        values.put("imageId", outAssets.getImageId());
+        values.put("name", outAssets.getName());
+        values.put("balance", outAssets.getBalance() - Double.valueOf(money));
+        values.put("type", outAssets.getType());
+        values.put("remark", outAssets.getRemark());
+        Log.d("removeBalance: ", outAssets.toString());
+        Log.d("removeBalance: ", values.toString());
+
+        return DataSupport.update(Assets.class, values, outAssets.getId()) == 1;
+    }
+
+    //添加资产
+    public boolean addBalance(Assets inAssets, String money) {
+        ContentValues values = new ContentValues();
+        values.put("imageId", inAssets.getImageId());
+        values.put("name", inAssets.getName());
+        values.put("balance", inAssets.getBalance() + Double.valueOf(money));
+        values.put("type", inAssets.getType());
+        values.put("remark", inAssets.getRemark());
+        Log.d("addBalance: ", inAssets.toString());
+        Log.d("addBalance: ", values.toString());
+        return DataSupport.update(Assets.class, values, inAssets.getId()) == 1;
+    }
 }

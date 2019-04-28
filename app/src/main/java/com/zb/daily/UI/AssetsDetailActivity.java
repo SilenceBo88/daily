@@ -215,11 +215,12 @@ public class AssetsDetailActivity extends BaseActivity {
 
     //返回上一个活动
     private void backActivity() {
-        Intent intent = new Intent();
+        MainActivity.actionStart(getApplicationContext(), Constant.TO_ASSETS_FRAGMENT);
+        /*Intent intent = new Intent();
         intent.putExtra("assets_detail_return", JSONObject.toJSONString(assets));
         intent.putExtra("position_detail_return", position);
         setResult(RESULT_OK, intent);
-        finish();
+        finish();*/
     }
 
     //启动本活动

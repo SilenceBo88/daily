@@ -173,6 +173,24 @@ public class IndexRecordUpdateInFragment extends Fragment {
                         currentAssets.getId(), currentAssets.getName());
                 temp.setId(record.getId());
                 if (recordDao.updateRecord(temp)){
+                    if (currentAssets.getType() == 1){
+                        if (record.getType() == 2){
+                            assetsDao.removeBalance(record.getAssets(), record.getMoney().toString());
+                        }else {
+                            assetsDao.addBalance(record.getAssets(), record.getMoney().toString());
+                        }
+                        Assets assets = assetsDao.findAssetsById(currentAssets.getId());
+                        assetsDao.addBalance(assets, money);
+                    }else {
+                        if (record.getType() == 2){
+                            assetsDao.addBalance(record.getAssets(), record.getMoney().toString());
+                        }else {
+                            assetsDao.removeBalance(record.getAssets(), record.getMoney().toString());
+                        }
+                        Assets assets = assetsDao.findAssetsById(currentAssets.getId());
+                        assetsDao.removeBalance(assets, money);
+                    }
+
                     ToastUtils.show("修改成功");
                     MainActivity.actionStart(activity, Constant.TO_INDEX_FRAGMENT);
                     activity.finish();

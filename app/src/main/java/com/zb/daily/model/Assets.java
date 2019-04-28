@@ -81,4 +81,16 @@ public class Assets extends DataSupport {
         this.type = type;
         this.remark = remark;
     }
+
+    @Override
+    public String toString() {
+        return "Assets{" +
+                "id=" + id +
+                ", imageId=" + imageId +
+                ", name='" + name + '\'' +
+                ", balance=" + balance +
+                ", type=" + type +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }
