@@ -15,10 +15,7 @@ import com.hjq.toast.ToastUtils;
 import com.zb.daily.BaseActivity;
 import com.zb.daily.Constant;
 import com.zb.daily.R;
-import com.zb.daily.UI.fragment.AssetsFragment;
-import com.zb.daily.UI.fragment.CategoryFragment;
-import com.zb.daily.UI.fragment.ChartFragment;
-import com.zb.daily.UI.fragment.IndexFragment;
+import com.zb.daily.UI.fragment.*;
 import com.zb.daily.adapter.AssetsMainListAdapter;
 import com.zb.daily.adapter.CategoryMainListAdapter;
 import com.zb.daily.adapter.RecordMainListAdapter;
@@ -77,6 +74,10 @@ public class MainActivity extends BaseActivity {
                 navigationView.setCheckedItem(R.id.nav_category);
                 replaceFragment(new CategoryFragment());
                 break;
+            case Constant.TO_SETTING_FRAGMENT:
+                navigationView.setCheckedItem(R.id.nav_site);
+                replaceFragment(new SettingFragment());
+                break;
         }
 
         //处理点击菜单项产生的事件
@@ -96,6 +97,8 @@ public class MainActivity extends BaseActivity {
                     case R.id.nav_category:
                         replaceFragment(new CategoryFragment());
                         break;
+                    case R.id.nav_site:
+                        replaceFragment(new SettingFragment());
                 }
                 menuItem.setCheckable(true);//选项可选
                 menuItem.setChecked(true);//选项被选中

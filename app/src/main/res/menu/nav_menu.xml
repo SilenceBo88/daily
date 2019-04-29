@@ -17,10 +17,6 @@
                 android:id="@+id/nav_category"
                 android:icon="@drawable/nav_sort"
                 android:title="@string/text_nav_sort" />
-        <item
-                android:id="@+id/nav_self"
-                android:icon="@drawable/nav_self"
-                android:title="@string/text_nav_self" />
     </group>
 
     <group android:id="@+id/group2" android:checkableBehavior="single">

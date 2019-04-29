@@ -14,15 +14,19 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.zb.daily.Constant;
 import com.zb.daily.MyApplication;
 import com.zb.daily.R;
+import com.zb.daily.UI.MainActivity;
 import com.zb.daily.UI.RecordAddActivity;
 import com.zb.daily.adapter.AssetsMainListAdapter;
 import com.zb.daily.adapter.RecordMainListAdapter;
 import com.zb.daily.dao.RecordDao;
 import com.zb.daily.model.Record;
+import com.zb.daily.util.SPUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,6 +53,8 @@ public class IndexFragment extends Fragment {
 
     private TextView monthIncome;
     private TextView monthOutlay;
+    private TextView monthBudget;
+    private LinearLayout linearLayout;
 
     static RecordMainListAdapter adapter = null;
 
@@ -95,6 +101,7 @@ public class IndexFragment extends Fragment {
             }
         });
 
+        monthBudget = activity.findViewById(R.id.tv_budget);
         monthIncome = activity.findViewById(R.id.tv_month_income);
         monthOutlay = activity.findViewById(R.id.tv_month_outlay);
         String month = new SimpleDateFormat("yyyy-MM").format(new Date());
@@ -102,6 +109,19 @@ public class IndexFragment extends Fragment {
         double in = recordDao.getMonthSummary(month, 2);
         monthIncome.setText(String.valueOf(in));
         monthOutlay.setText(String.valueOf(out));
+        String budget = (String) SPUtil.get(activity, "month_budget", "0");
+        if (budget.equals("0")){
+            monthBudget.setText("设置预算");
+        }else {
+            monthBudget.setText(String.valueOf(Double.valueOf(budget) - out));
+        }
+        linearLayout = activity.findViewById(R.id.fragment_index_budget);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.actionStart(activity, Constant.TO_SETTING_FRAGMENT);
+            }
+        });
 
         recordList = recordDao.findRecordList();
 
@@ -120,6 +140,12 @@ public class IndexFragment extends Fragment {
                 double in = recordDao.getMonthSummary(month, 2);
                 monthIncome.setText(String.valueOf(in));
                 monthOutlay.setText(String.valueOf(out));
+                String budget = (String) SPUtil.get(activity, "month_budget", "0");
+                if (budget.equals("0")){
+                    monthBudget.setText("设置预算");
+                }else {
+                    monthBudget.setText(String.valueOf(Double.valueOf(budget) - out));
+                }
             }
         });
     }

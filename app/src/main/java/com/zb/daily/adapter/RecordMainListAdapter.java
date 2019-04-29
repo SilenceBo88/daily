@@ -21,6 +21,7 @@ import com.zb.daily.dao.AssetsDao;
 import com.zb.daily.dao.RecordDao;
 import com.zb.daily.model.Assets;
 import com.zb.daily.model.Record;
+import com.zb.daily.util.SPUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -84,10 +85,16 @@ public class RecordMainListAdapter extends RecyclerView.Adapter<RecordMainListAd
         final View view = LayoutInflater.from(mContext).inflate(R.layout.item_record_main_list, parent, false);
         final ViewHolder holder = new ViewHolder(view);
 
+        final boolean checked = (boolean) SPUtil.get(mContext, "record_lock", false);
+
         //list中的每个item的点击事件，打开修改记录页面
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (checked){
+                    ToastUtils.show("记录已经被锁定");
+                    return;
+                }
                 int position = holder.getAdapterPosition();
                 Record record = mRecordList.get(position);
                 RecordUpdateActivity.actionStart(mContext, record);
@@ -100,6 +107,10 @@ public class RecordMainListAdapter extends RecyclerView.Adapter<RecordMainListAd
 
             @Override
             public boolean onLongClick(View v) {
+                if (checked){
+                    ToastUtils.show("记录已经被锁定");
+                    return false;
+                }
                 longClickPosition = holder.getAdapterPosition();
                 showDeleteRecordDialog();
                 return true;
