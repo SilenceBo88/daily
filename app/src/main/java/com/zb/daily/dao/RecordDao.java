@@ -5,7 +5,9 @@ import com.zb.daily.model.Category;
 import com.zb.daily.model.Record;
 import org.litepal.crud.DataSupport;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @auther: zb
@@ -56,7 +58,19 @@ public class RecordDao {
         return sum;
     }
 
-
+    //查询月支出/收入
+    public Map<String, Double> getMonthSummaryByCategory(String month, Integer type) {
+        List<Record> recordList = DataSupport.where("type = ? and date like ?", type.toString(), month + "%").find(Record.class);
+        Map<String, Double> map = new HashMap<>();
+        for (Record record : recordList){
+            if (map.containsKey(record.getCategory().getName())){
+                map.put(record.getCategory().getName(), map.get(record.getCategory().getName()) + record.getMoney());
+            }else {
+                map.put(record.getCategory().getName(), record.getMoney());
+            }
+        }
+        return map;
+    }
 
     //修改资产
     public boolean updateRecord(Record temp) {

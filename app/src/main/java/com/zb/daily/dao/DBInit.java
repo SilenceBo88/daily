@@ -141,37 +141,37 @@ public class DBInit {
         //记录集合
         List<Record> recordList = new ArrayList<>();
 
-        Record record13 = new Record(150.0, "2019-04-05", "买衣服", 1,
+        Record record13 = new Record(150.0, "2019-05-05", "买衣服", 1,
                 3, R.drawable.category_clothes, "衣服", 8, "花呗");
-        Record record14 = new Record(200.0, "2019-04-05", "键盘", 1,
+        Record record14 = new Record(200.0, "2019-05-05", "键盘", 1,
                 8, R.drawable.category_electronic, "电子产品", 9, "京东白条");
 
-        Record record1 = new Record(10.0, "2019-04-04", "晚餐", 1,
+        Record record1 = new Record(10.0, "2019-05-04", "晚餐", 1,
                 1, R.drawable.category_food, "餐饮", 2, "微信");
-        Record record2 = new Record(10.0, "2019-04-04", "午餐", 1,
+        Record record2 = new Record(10.0, "2019-05-04", "午餐", 1,
                 1, R.drawable.category_food, "餐饮", 2, "微信");
-        Record record3 = new Record(10.0, "2019-04-04", "早餐", 1,
+        Record record3 = new Record(10.0, "2019-05-04", "早餐", 1,
                 1, R.drawable.category_food, "餐饮", 2, "微信");
 
-        Record record4 = new Record(10.0, "2019-04-03", "晚餐", 1,
+        Record record4 = new Record(10.0, "2019-05-03", "晚餐", 1,
                 1, R.drawable.category_food, "餐饮", 3, "支付宝");
-        Record record5 = new Record(10.0, "2019-04-03", "午餐", 1,
+        Record record5 = new Record(10.0, "2019-05-03", "午餐", 1,
                 1, R.drawable.category_food, "餐饮", 3, "支付宝");
-        Record record6 = new Record(10.0, "2019-04-03", "早餐", 1,
+        Record record6 = new Record(10.0, "2019-05-03", "早餐", 1,
                 1, R.drawable.category_food, "餐饮", 3, "支付宝");
 
-        Record record7 = new Record(10.0, "2019-04-02", "晚餐", 1,
+        Record record7 = new Record(10.0, "2019-05-02", "晚餐", 1,
                 1, R.drawable.category_food, "餐饮", 4, "储蓄卡");
-        Record record8 = new Record(10.0, "2019-04-02", "午餐", 1,
+        Record record8 = new Record(10.0, "2019-05-02", "午餐", 1,
                 1, R.drawable.category_food, "餐饮", 4, "储蓄卡");
-        Record record9 = new Record(10.0, "2019-04-02", "早餐", 1,
+        Record record9 = new Record(10.0, "2019-05-02", "早餐", 1,
                 1, R.drawable.category_food, "餐饮", 4, "储蓄卡");
 
-        Record record10 = new Record(400.0, "2019-04-01", "工资", 2,
+        Record record10 = new Record(400.0, "2019-05-01", "工资", 2,
                 9, R.drawable.category_salary, "薪资", 4, "储蓄卡");
-        Record record11 = new Record(100.0, "2019-04-01", "兼职", 2,
+        Record record11 = new Record(100.0, "2019-05-01", "兼职", 2,
                 10, R.drawable.category_parttime, "兼职", 3, "支付宝");
-        Record record12 = new Record(500.0, "2019-04-01", "工资", 2,
+        Record record12 = new Record(500.0, "2019-05-01", "工资", 2,
                 9, R.drawable.category_salary, "薪资", 2, "微信");
 
         recordList.add(record1);

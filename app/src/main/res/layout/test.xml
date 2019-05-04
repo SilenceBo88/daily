@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--测试页面-->
-<LinearLayout
-        android:orientation="vertical"
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_height="wrap_content">
 
+    <Button
+            android:id="@+id/fragment_chart_btn_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_menu"/>
 
-</LinearLayout>
+    <TextView
+            android:id="@+id/fragment_chart_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_black"
+            android:textSize="18sp"
+            android:layout_centerHorizontal="true"
+            android:text="2019-05"/>
+
+    <ImageView
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@id/fragment_chart_date"
+            android:src="@drawable/ic_down"/>
+
+</RelativeLayout>
