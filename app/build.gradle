@@ -41,7 +41,7 @@ dependencies {
     //toast工具类
     implementation 'com.hjq:toast:5.0'
     //关于页面
-    compile 'com.github.medyo:android-about-page:1.2'
+    implementation 'com.github.medyo:android-about-page:1.2'
     //图表
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }
