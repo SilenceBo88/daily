@@ -78,6 +78,10 @@ public class MainActivity extends BaseActivity {
                 navigationView.setCheckedItem(R.id.nav_site);
                 replaceFragment(new SettingFragment());
                 break;
+            case Constant.TO_ABOUT_FRAGMENT:
+                navigationView.setCheckedItem(R.id.nav_about);
+                replaceFragment(new AboutFragment());
+                break;
         }
 
         //处理点击菜单项产生的事件
@@ -99,6 +103,10 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.nav_site:
                         replaceFragment(new SettingFragment());
+                        break;
+                    case R.id.nav_about:
+                        replaceFragment(new AboutFragment());
+                        break;
                 }
                 menuItem.setCheckable(true);//选项可选
                 menuItem.setChecked(true);//选项被选中
