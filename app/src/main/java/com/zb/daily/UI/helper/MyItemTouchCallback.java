@@ -27,7 +27,7 @@ public class MyItemTouchCallback extends ItemTouchHelper.Callback {
     //是否长按拖动
     @Override
     public boolean isLongPressDragEnabled() {//可以进行长按拖动
-        return true;
+        return false;
     }
 
     //进行侧滑拖动
